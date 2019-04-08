@@ -1,0 +1,57 @@
+{% if settings.custom_input_one_display %}
+  <div class="line-item__optional">
+
+    {% if settings.custom_input_one_type == "checkbox" %}
+      <input type="hidden" name="properties[{{ settings.custom_input_one_label }}]" value="No">
+      <input {% if settings.custom_input_one_optionality %} required class="required" {% endif %}
+        id={{ settings.custom_input_one_label }}
+        type="checkbox"
+        name="properties[{{ settings.custom_input_one_label }}]"
+        value="Yes">
+      <label for={{ settings.custom_input_one_label }}>{{ settings.custom_input_one_label }}</label>
+    {% else %}
+      <label>{{ settings.custom_input_one_label }}</label><br>
+    {% endif %}
+
+    {% if settings.custom_input_one_type == "drop_down" %}
+      <select {% if settings.custom_input_one_optionality %} required class="required" {% endif %}
+        name="properties[{{ settings.custom_input_one_label }}]">
+    {% endif %}
+
+    {% assign numbers = "one two three four" | split: ' ' %}
+
+    {% for number in numbers %}
+      {% if settings.custom_input_one_type == "color_radio_button" %}
+        {% assign input_option = "custom_input_one_option_number_color" | replace: "number", number %}
+      {% else %}
+        {% assign input_option = "custom_input_one_option_number" | replace: "number", number %}
+      {% endif %}
+
+      {% unless input_option == "" %}
+        {% case settings.custom_input_one_type %}
+          {% when "drop_down"%}
+            <input {% if settings.custom_input_one_optionality %} required class="required" {% endif %}
+              type="radio"
+              name="properties[{{ settings.custom_input_one_label }}]"
+              value={{ settings[input_option] }} >
+            <span>{{ settings[input_option] }}</span><br>
+          {% when "radio_button" %}
+            <option value={{ settings[input_option] }}>{{ settings[input_option] }}</option>
+          {% when "color_radio_button" %}
+            <div style="display:inline;">
+              <input {% if settings.custom_input_one_optionality %} required class="required" {% endif %}
+                type="radio"
+                name="properties[{{ settings.custom_input_one_label }}]"
+                value={{ settings[input_option] }} >
+              <div style="width:30px;height:10px;background-color:{{ settings[input_option] }};float:right"></div>
+            </div><br>
+        {% endcase %}
+      {% endunless %}
+    {% endfor %}
+
+    {% if settings.custom_input_one_type == "drop_down" %}
+      </select>
+    {% endif %}
+
+  </div>
+{% endif %}

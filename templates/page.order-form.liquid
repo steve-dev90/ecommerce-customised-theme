@@ -1,0 +1,69 @@
+{% assign collection = collections.all %}
+{% comment %}
+Based on source: https://gist.github.com/carolineschnapp/9122054
+{% endcomment %}
+
+{% paginate collection.products by 100 %}
+<div class="page-width">
+  <form action="/cart" id="post-order" >
+    
+    {% if collection.products_count > 0 %}
+      <div class="order-form__page-title">
+        <h1>{% if template contains 'page' %}{{ page.title }}{% else %}{{ collection.title }}{% endif %}</h1>
+      </div>  
+      <div>  
+        <input  class="btn btn--secondary-accent" type="submit" value="Order" />
+        <span class="order-form__error-message">Check that you have selected your {{ settings.inline_required }} </span>
+        <h4 class="order-form__cart-total"><b>Cart total : </b> $<span class="cart-total">0.00</span><h4>
+      </div>
+    {% else %}
+      <h1>{% if template contains 'page' %}{{ page.title }}{% else %}{{ collection.title }}{% endif %}</h1>
+    {% endif %}
+
+    {% if template contains 'page' and page.content.size > 0 %}
+      <div class="rte">
+        {{ page.content }}
+      </div>  
+    {% elsif collection.description.size > 0 %}
+      <div class="rte">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+
+    {% if collection.products_count > 0 %}
+	  <div class="order-form__table--overflow">	
+        <table class="order-form__table">
+          <tbody>
+            {% for product in collection.products %}
+              {% if product.variants.size > 1 or product.template_suffix == 'customizable'%}            
+                {% assign rows = product.variants.size | plus:2 %}        
+                {% for i in (1..rows) %} 
+        	      {% assign row_id = i %}
+		          {% include 'order-form-row' %} 
+        	    {% endfor %}
+              {% else %}
+                {% assign row_id = 1 %}
+                {% include 'order-form-row' %}
+              {% endif%}   
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    
+      <div>
+        <input type="submit" class="btn btn--secondary-accent" value="Order" />
+        <span class="order-form__error-message">Check that you have selected your {{ settings.inline_required }} </span>
+        <h4 class="order-form__cart-total"><b>Cart total : </b> $<span class="cart-total">0.00</span></h4>
+      </div>  
+    {% else %}
+      <p>There are no products in this view.</p>
+    {% endif %}
+
+  </form>
+</div>
+{% endpaginate %}
+
+{% if collection.products_count > 0 %}
+  <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'order-form.js' | asset_url }}" defer="defer"></script>
+{% endif %}
