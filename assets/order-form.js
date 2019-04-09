@@ -9,6 +9,17 @@ $(function() {
     }
   });
 
+  // Change displayed collection
+  $('#select-collection').change(function(){
+    document.location.href = '/pages/order-form/'+ $(this).val();
+  });
+
+  // Order form popup
+  $('.configure-options').click(function(event) {
+    event.preventDefault()
+    console.log('hello')
+    $('#order-form-modal').addClass('modal--is-active')
+  });
 
   var getParameter = function(parameter, selector) {
     var variantId = $(selector).find('select').val() || $(selector).find('data').val();
