@@ -29,13 +29,13 @@
 
       {% unless input_option == "" %}
         {% case settings.custom_input_one_type %}
-          {% when "drop_down"%}
+          {% when "radio_button"%}
             <input {% if settings.custom_input_one_optionality %} required class="required" {% endif %}
               type="radio"
               name="properties[{{ settings.custom_input_one_label }}]"
               value={{ settings[input_option] }} >
             <span>{{ settings[input_option] }}</span><br>
-          {% when "radio_button" %}
+          {% when "drop_down" %}
             <option value={{ settings[input_option] }}>{{ settings[input_option] }}</option>
           {% when "color_radio_button" %}
             <div style="display:inline;">

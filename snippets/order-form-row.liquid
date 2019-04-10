@@ -12,22 +12,10 @@
         <span class="product-card__name link-accent-color">{{ product.title }}</span>
       </a>
     </td>
-    <td>
-      <button class="configure-options">Select options</button>
-  </div>
-    </td>
-    <td class="order-form__tablecell--center" >
+    <td class="line-properties">
       {% if product.template_suffix == 'customizable' %}
-        <input type="hidden" name="properties[Optional checkbox]" value="No">
-        <input class="optional-checkbox" type="checkbox" name="properties[Optional checkbox]" value="Yes">
-        <label class="optional-checkbox-label">{{ settings.inline_optional }}</label>
-      {% endif %}
-    </td>
-    <td class="order-form__tablecell--center">
-      {% if product.template_suffix == 'customizable' %}
-        <label class="required-label"> {{ settings.inline_required }} </label><br>
-        <input class="required" type="radio" name="{{first_variant.id}}-{{row_id}}-properties[Required radio button]" value={{settings.inline_required_first_button}}> <span>{{settings.inline_required_first_button}}</span><br>
-        <input class="required" type="radio" name="{{first_variant.id}}-{{row_id}}-properties[Required radio button]" value={{settings.inline_required_second_button}}> <span>{{settings.inline_required_second_button}}</span><br>
+        <div class="selected-line-properties"></div>
+        <a class="configure-options">Select options</a>
         <div>
           <span class="order-form__tablecell--popuptext" style="display:none;">Select an option</span>
         </div>

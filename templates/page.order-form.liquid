@@ -28,7 +28,7 @@ Based on source: https://gist.github.com/carolineschnapp/9122054
     {% if collection.products_count > 0 %}
       <div>
         <input  class="btn btn--secondary-accent" type="submit" value="Order" />
-        <span class="order-form__error-message">Check that you have selected your {{ settings.inline_required }} </span>
+        <span class="order-form__error-message">Check that you have selected all required options </span>
         <h4 class="order-form__cart-total"><b>Cart total : </b> $<span class="cart-total">0.00</span><h4>
       </div>
     {% endif %}
@@ -45,38 +45,45 @@ Based on source: https://gist.github.com/carolineschnapp/9122054
 
     {% if collection.products_count > 0 %}
 	    <div class="order-form__table--overflow">
-        <table class="order-form__table">
+        <table class="order-form__table"
+          {% if settings.custom_input_one_optionality %} required-line-prop="{{ settings.custom_input_one_label }}" {% endif %} >
           <tbody>
             {% for product in collection.products %}
               {% if product.variants.size > 1 or product.template_suffix == 'customizable'%}
                 {% assign rows = product.variants.size | plus:2 %}
                 {% for i in (1..rows) %}
-        	      {% assign row_id = i %}
-		          {% include 'order-form-row' %}
-        	    {% endfor %}
+        	        {% assign row_id = i %}
+		              {% include 'order-form-row' %}
+        	      {% endfor %}
               {% else %}
                 {% assign row_id = 1 %}
                 {% include 'order-form-row' %}
-              {% endif%}
+              {% endif %}
             {% endfor %}
           </tbody>
         </table>
       </div>
-
-      <div>
-        <input type="submit" class="btn btn--secondary-accent" value="Order" />
-        <span class="order-form__error-message">Check that you have selected your {{ settings.inline_required }} </span>
-        <h4 class="order-form__cart-total"><b>Cart total : </b> $<span class="cart-total">0.00</span></h4>
-      </div>
-    {% else %}
-      <p>There are no products in this view.</p>
     {% endif %}
+
+    <div>
+      <input type="submit" class="btn btn--secondary-accent" value="Order" />
+      <span class="order-form__error-message">Check that you have selected your {{ settings.inline_required }} </span>
+      <h4 class="order-form__cart-total"><b>Cart total : </b> $<span class="cart-total">0.00</span></h4>
+    </div>
 
   </form>
 </div>
+
 <div id="order-form-modal" class="modal">
- HEEEEEEEEEE
+  <div class="order-form-modal__inner">
+    <button type="button" class="btn modal__close order-form-modal__close">
+      {% include 'icon-close' %}
+      <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t | json }}</span>
+    </button>
+    {% include 'custom-property' %}
+  </div>
 </div>
+
 {% endpaginate %}
 
 {% if collection.products_count > 0 %}

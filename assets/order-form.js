@@ -15,11 +15,43 @@ $(function() {
   });
 
   // Order form popup
+  var selectedRowCell
   $('.configure-options').click(function(event) {
     event.preventDefault()
-    console.log('hello')
+    selectedRowCell = $(this).parents('td')
+    console.log(selectedRowCell)
     $('#order-form-modal').addClass('modal--is-active')
   });
+
+  $('.order-form-modal__close').click(function(event) {
+    event.preventDefault();
+    saveRowProperties();
+    printRowProperties();
+    $('#order-form-modal').removeClass('modal--is-active');
+  });
+
+  function saveRowProperties() {
+    var line_prop_name = $('.order-form-modal__inner').find('label').eq(0).text();
+    if ($('.order-form-modal__inner').find('input').length > 0) {
+      line_prop_value = $('.order-form-modal__inner').find('input:checked').val()
+    }
+    if ($('.order-form-modal__inner').find('select').length > 0) {
+      line_prop_value = $('.order-form-modal__inner').find('select').val()
+    }
+    if ($('.order-form-modal__inner').find('#custom').length > 0 && !line_prop_value) {
+      line_prop_value = "No"
+    }
+    selectedRowCell.data(line_prop_name, line_prop_value);
+    console.log(line_prop_value)
+    console.log(selectedRowCell.data());
+  }
+
+  function printRowProperties() {
+    $(selectedRowCell).find('.selected-line-properties').html("<p>" +
+      Object.keys(selectedRowCell.data())[0] + ": " +
+      Object.values(selectedRowCell.data())[0] +
+      "</p>")
+  }
 
   var getParameter = function(parameter, selector) {
     var variantId = $(selector).find('select').val() || $(selector).find('data').val();
@@ -72,7 +104,6 @@ $(function() {
 
   // Hide popup error message on moveover
   $('.order-form__tablecell--popuptext').hover(function() {
-    console.log('POP IT')
     $(this).fadeOut();
   });
 
@@ -107,19 +138,16 @@ $(function() {
 
   $('#post-order').submit(function(event) {
     event.preventDefault()
-    var optionalCheckboxName = $('label.optional-checkbox-label').eq(0).text();
-    var requiredRadioButtonName = $('label.required-label').eq(0).text();
     var radioButtonChecked = true;
+    var requiredLineProperty = $('table').attr("required-line-prop")
     $('tr').each(function() {
       var quantity = parseInt(getParameter('q', this).val());
-      var properties = {}
+      var properties = $(this).find('.line-properties').data()
+
       if ( quantity > 0 ) {
-        if ($(this).find('input.optional-checkbox').length > 0) {
-          properties[optionalCheckboxName] = $(this).find('input.optional-checkbox:checked').val() || 'No'
-        }
-        if ($(this).find('input.required').length > 0) {
-          properties[requiredRadioButtonName] = $(this).find('input.required:checked').val()
-          if (!(properties[requiredRadioButtonName])) {
+        console.log(properties)
+        if ($(this).find('.configure-options').length > 0) {
+          if (requiredLineProperty && !properties[requiredLineProperty]) {
             radioButtonMessage($(this));
             radioButtonChecked = false;
           }
