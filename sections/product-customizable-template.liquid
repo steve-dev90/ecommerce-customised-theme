@@ -155,14 +155,17 @@
 
           <div class="product-form__input line-item__container">
             {% assign custom_numbers = "one two three four" | split: ' ' %}
-            {% assign custom_required_text = true %}
+            {% assign custom_required_text = false %}
             {% for custom_number in custom_numbers %}
-               {% assign custom_input = "custom_input_" | append: custom_number %}
-               {% include 'custom-property' %}
+              {% assign custom_input = "custom_input_" | append: custom_number %}
+              {% include 'custom-property' %}
+              {% if settings[custom_input_optionality] %}
+                {% assign custom_required_text = true %}
+              {% endif %}
             {% endfor %}
           </div>
 
-          {% if settings[custom_input_optionality] %}<p>{{ 'products.product.must_be_selected' | t }}</p>{% endif %}
+          {% if custom_required_text %}<p>{{ 'products.product.must_be_selected' | t }}</p>{% endif %}
 
           <hr class="line-item__border">
 

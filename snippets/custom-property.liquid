@@ -13,12 +13,12 @@
         type="checkbox"
         name="properties[{{ settings[custom_input_label] }}]"
         value="Yes">
-      <label for={{ settings[custom_input_label] }}>
+      <label for={{ settings[custom_input_label] }} name='{{ settings[custom_input_label] }}'>
         {% if settings[custom_input_optionality] %}*{% endif %}
         {{ settings[custom_input_label] }}
       </label>
     {% else %}
-      <label>
+      <label name='{{ settings[custom_input_label] }}'>
         {% if settings[custom_input_optionality] %}*{% endif %}
         {{ settings[custom_input_label] }}
       </label><br>

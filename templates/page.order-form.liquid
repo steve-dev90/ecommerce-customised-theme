@@ -46,7 +46,11 @@ Based on source: https://gist.github.com/carolineschnapp/9122054
     {% if collection.products_count > 0 %}
 	    <div class="order-form__table--overflow">
         <table class="order-form__table"
-          {% if settings.custom_input_one_optionality %} required-line-prop="{{ settings.custom_input_one_label }}" {% endif %} >
+          {% if settings.custom_input_one_optionality %} data-required-0="{{ settings.custom_input_one_label }}" {% endif %}
+          {% if settings.custom_input_two_optionality %} data-required-1="{{ settings.custom_input_two_label }}" {% endif %}
+          {% if settings.custom_input_three_optionality %} data-required-2="{{ settings.custom_input_three_label }}" {% endif %}
+          {% if settings.custom_input_four_optionality %} data-required-3="{{ settings.custom_input_four_label }}" {% endif %}
+        >
           <tbody>
             {% for product in collection.products %}
               {% if product.variants.size > 1 or product.template_suffix == 'customizable'%}
@@ -80,7 +84,15 @@ Based on source: https://gist.github.com/carolineschnapp/9122054
       {% include 'icon-close' %}
       <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t | json }}</span>
     </button>
-    {% include 'custom-property' %}
+    <div class="line-item__container">
+      {% assign custom_numbers = "one two three four" | split: ' ' %}
+      {% assign custom_required_text = true %}
+      {% for custom_number in custom_numbers %}
+        {% assign custom_input = "custom_input_" | append: custom_number %}
+        {% include 'custom-property' %}
+      {% endfor %}
+    </div>
+    {% if settings[custom_input_optionality] %}<p>{{ 'products.product.must_be_selected' | t }}</p>{% endif %}
   </div>
 </div>
 

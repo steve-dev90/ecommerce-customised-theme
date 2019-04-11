@@ -19,7 +19,6 @@ $(function() {
   $('.configure-options').click(function(event) {
     event.preventDefault()
     selectedRowCell = $(this).parents('td')
-    console.log(selectedRowCell)
     $('#order-form-modal').addClass('modal--is-active')
   });
 
@@ -31,33 +30,35 @@ $(function() {
   });
 
   function saveRowProperties() {
-    var line_prop_name = $('.order-form-modal__inner').find('label').eq(0).text();
-    if ($('.order-form-modal__inner').find('input').length > 0) {
-      line_prop_value = $('.order-form-modal__inner').find('input:checked').val()
-    }
-    if ($('.order-form-modal__inner').find('select').length > 0) {
-      line_prop_value = $('.order-form-modal__inner').find('select').val()
-    }
-    if ($('.order-form-modal__inner').find('#custom').length > 0 && !line_prop_value) {
-      line_prop_value = "No"
-    }
-    selectedRowCell.data(line_prop_name, line_prop_value);
-    console.log(line_prop_value)
+    $('.line-item__selector').each(function() {
+      var line_prop_name = $(this).find('label').attr('name');
+      if ($(this).find('input').length > 0) {
+        line_prop_value = $(this).find('input:checked').val();
+      }
+      if ($(this).find('select').length > 0) {
+        line_prop_value = $(this).find('select').val();
+      }
+      if ($(this).find('#custom').length > 0 && !line_prop_value) {
+        line_prop_value = 'No';
+      }
+      selectedRowCell.data(line_prop_name, line_prop_value);
+    })
     console.log(selectedRowCell.data());
-  }
+  };
 
   function printRowProperties() {
-    $(selectedRowCell).find('.selected-line-properties').html("<p>" +
-      Object.keys(selectedRowCell.data())[0] + ": " +
-      Object.values(selectedRowCell.data())[0] +
-      "</p>")
-  }
+    var line_prop_html = '';
+    $.each(selectedRowCell.data(), function(key, value) {
+      line_prop_html += '<p>' + key + ": " + value + '</p>';
+    })
+    $(selectedRowCell).find('.selected-line-properties').html(line_prop_html);
+  };
 
   var getParameter = function(parameter, selector) {
     var variantId = $(selector).find('select').val() || $(selector).find('data').val();
     var parameterId = '#'+ parameter + '-' + variantId + '-' + $(selector).attr('row');
     return $(selector).find(parameterId);
-  }
+  };
 
   //Initial form setup
   $( document ).ready(function() {
@@ -139,21 +140,32 @@ $(function() {
   $('#post-order').submit(function(event) {
     event.preventDefault()
     var radioButtonChecked = true;
-    var requiredLineProperty = $('table').attr("required-line-prop")
+    var requiredLineProperties = []
+    $.each(['0','1','2','3'], function(index, value) {
+      var requiredLineProperty = $('table').attr('data-required-' + value)
+      if (requiredLineProperty) {
+        requiredLineProperties.push(requiredLineProperty)
+      }
+    });
     $('tr').each(function() {
-      var quantity = parseInt(getParameter('q', this).val());
-      var properties = $(this).find('.line-properties').data()
+      var currentRow = $(this);
+      var quantity = parseInt(getParameter('q', currentRow).val());
+      var properties = $(currentRow).find('.line-properties').data()
 
       if ( quantity > 0 ) {
-        console.log(properties)
-        if ($(this).find('.configure-options').length > 0) {
-          if (requiredLineProperty && !properties[requiredLineProperty]) {
-            radioButtonMessage($(this));
-            radioButtonChecked = false;
-          }
+
+        if (currentRow.find('.configure-options').length > 0) {
+          $.each(requiredLineProperties, function(index, requiredLineProperty) {
+            if (!properties[requiredLineProperty]) {
+              radioButtonMessage(currentRow);
+              radioButtonChecked = false;
+              return false
+            }
+          });
         }
+
         cartQueue.push({
-          variantId: $(this).find('select').val() || $(this).find('data').val(),
+          variantId: currentRow.find('select').val() || currentRow.find('data').val(),
           quantity: quantity,
           properties: properties
         });
