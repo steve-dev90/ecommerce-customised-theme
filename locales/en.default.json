@@ -286,7 +286,8 @@
       },
       "collection_return": "Back to {{ collection }}",
       "product_added_to_cart_html": "Item added to cart. <span>View cart and check out<\/span>.",
-      "stock_unavailable": "The item could not be added to your cart because there are not enough in stock."
+      "stock_unavailable": "The item could not be added to your cart because there are not enough in stock.",
+      "must_be_selected": "*Must be selected before adding item to cart"
     }
   },
   "gift_cards": {

@@ -6315,16 +6315,23 @@ body {
   font-size: em(floor($font-size-base * 0.9));
 }
 
-/*================ Custom css for line item properties================*/
+/*================ Custom css for line item properties ================*/
 
-.line-item__optional {
-  display: inline-block;
-  float: left;
+.line-item__selector {
+  width: 40%;
+  margin-bottom: 10px;
+  float: right;
 }
 
-.line-item__required {
-  display: inline-block;
-  float: right;
+.line-item__container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+line-item__selector--required-indicator {
+  font-size: 1rem;
 }
 
 .line-item__border {
@@ -6335,7 +6342,7 @@ body {
   display: block;
 }
 
-/*================ Custom css for order form table================*/
+/*================ Custom css for order form table ================*/
 
 .order-form__page-title {
   margin-bottom: 4rem;

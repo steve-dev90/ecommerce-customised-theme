@@ -870,100 +870,1405 @@
   },
   {
     "name": {
-      "de": "Custom Input - 1",
+      "de": "Entrada personalizada - 1",
       "en": "Custom Input - 1",
-      "es": "Custom Input - 1",
-      "fr": "Custom Input - 1",
-      "it": "Custom Input - 1",
-      "ja": "Custom Input - 1",
-      "pt-BR": "Custom Input - 1"
+      "es": "Entrada personalizada - 1",
+      "fr": "Entrée personnalisée  - 1",
+      "it": "Inserimento personalizzato - 1",
+      "ja": "カスタム入力 - 1",
+      "pt-BR": "Entrada Personalizada - 1"
     },
     "settings": [
+      {
+        "type": "header",
+        "content": {
+          "de": "Basic Setup",
+          "en": "Basic Setup",
+          "es": "Basic Setup",
+          "fr": "Basic Setup",
+          "it": "Basic Setup",
+          "ja": "Basic Setup",
+          "pt-BR": "Basic Setup"
+        }
+      },
       {
         "type": "checkbox",
         "id": "custom_input_one_display",
         "default": true,
-        "label": "Show custom input",
-        "info" : "Tick to display this custom input"
+        "label": {
+          "de": "Show custom input",
+          "en": "Show custom input",
+          "es": "Show custom input",
+          "fr": "Show custom input",
+          "it": "Show custom input",
+          "ja": "Show custom input",
+          "pt-BR": "Show custom input"
+        },
+        "info" : {
+          "de": "Tick to display custom input",
+          "en": "Tick to display custom input",
+          "es": "Tick to display custom input",
+          "fr": "Tick to display custom input",
+          "it": "Tick to display custom input",
+          "ja": "Tick to display custom input",
+          "pt-BR": "Tick to display custom input"
+        }
       },
       {
         "type": "radio",
         "id": "custom_input_one_type",
         "options": [
-           { "value": "radio_button", "label": "Radio buttons"},
-           { "value": "drop_down", "label": "Drop down select menu"},
-           { "value": "color_radio_button", "label": "Drop down color select menu"},
-           { "value": "checkbox", "label": "Checkbox"}
+          { "value": "radio_button",
+            "label": {
+              "de": "Radio buttons",
+              "en": "Radio buttons",
+              "es": "Radio buttons",
+              "fr": "Radio buttons",
+              "it": "Radio buttons",
+              "ja": "Radio buttons",
+              "pt-BR": "Radio buttons"
+              }
+            },
+            { "value": "drop_down",
+              "label": {
+               "de": "Drop down select menu",
+               "en": "Drop down select menu",
+               "es": "Drop down select menu",
+               "fr": "Drop down select menu",
+               "it": "Drop down select menu",
+               "ja": "Drop down select menu",
+               "pt-BR": "Drop down select menu"
+               }
+             },
+             { "value": "color_radio_button",
+              "label": {
+               "de": "Drop down color select menu",
+               "en": "Drop down color select menu",
+               "es": "Drop down color select menu",
+               "fr": "Drop down color select menu",
+               "it": "Drop down color select menu",
+               "ja": "Drop down color select menu",
+               "pt-BR": "Drop down color select menu"
+               }
+             },
+             { "value": "checkbox",
+              "label": {
+               "de": "Checkbox",
+               "en": "Checkbox",
+               "es": "Checkbox",
+               "fr": "Checkbox",
+               "it": "Checkbox",
+               "ja": "Checkbox",
+               "pt-BR": "Checkbox"
+               }
+             }
         ],
-        "default": "radio_button",
-        "label": "Type of custom input"
+        "default": "checkbox",
+        "label": {
+          "de": "Type of custom input",
+          "en": "Type of custom input",
+          "es": "Type of custom input",
+          "fr": "Type of custom input",
+          "it": "Type of custom input",
+          "ja": "Type of custom input",
+          "pt-BR": "Type of custom input"
+        }
       },
       {
         "type": "checkbox",
         "id": "custom_input_one_optionality",
         "default": true,
-        "label": "Required",
-        "info" : "The custom input will need to be selected or otherwise used for the customer to add the item to the cart"
+        "label": {
+          "de": "Required",
+          "en": "Required",
+          "es": "Required",
+          "fr": "Required",
+          "it": "Required",
+          "ja": "Required",
+          "pt-BR": "Required"
+        },
+        "info" : {
+          "de": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "en": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "es": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "fr": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "it": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "ja": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "pt-BR": "Tick required if the custom input must be selected before the customer can add the item to the cart"
+        }
       },
       {
         "type": "text",
         "id": "custom_input_one_label",
-        "label": "Custom input label",
-        "default": "custom property 1",
-        "info": "Label that describes the custom input",
-        "placeholder": "Enter custom input label"
+        "label": {
+          "de": "Custom input label",
+          "en": "Custom input label",
+          "es": "Custom input label",
+          "fr": "Custom input label",
+          "it": "Custom input label",
+          "ja": "Custom input label",
+          "pt-BR": "Custom input label"
+        },
+        "default": "Cuff Links",
+        "info": {
+          "de": "Label that describes the custom input",
+          "en": "Label that describes the custom input",
+          "es": "Label that describes the custom input",
+          "fr": "Label that describes the custom input",
+          "it": "Label that describes the custom input",
+          "ja": "Label that describes the custom input",
+          "pt-BR": "Label that describes the custom input"
+        },
+        "placeholder": {
+          "de": "Enter custom input label",
+          "en": "Enter custom input label",
+          "es": "Enter custom input label",
+          "fr": "Enter custom input label",
+          "it": "Enter custom input label",
+          "ja": "Enter custom input label",
+          "pt-BR": "Enter custom input label"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "de": "Radio Button and Select Menu Options",
+          "en": "Radio Button and Select Menu Options",
+          "es": "Radio Button and Select Menu Options",
+          "fr": "Radio Button and Select Menu Options",
+          "it": "Radio Button and Select Menu Options",
+          "ja": "Radio Button and Select Menu Options",
+          "pt-BR": "Radio Button and Select Menu Options"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "de": "Empty labels will be ignored",
+          "en": "Empty labels will be ignored",
+          "es": "Empty labels will be ignored",
+          "fr": "Empty labels will be ignored",
+          "it": "Empty labels will be ignored",
+          "ja": "Empty labels will be ignored",
+          "pt-BR": "Empty labels will be ignored"
+        }
       },
       {
         "type": "text",
         "id": "custom_input_one_option_one",
-        "label": "First option",
-        "info": "First radio button or drop down menu option",
-        "placeholder": "Enter option label"
+        "label": {
+          "de": "First option",
+          "en": "First option",
+          "es": "First option",
+          "fr": "First option",
+          "it": "First option",
+          "ja": "First option",
+          "pt-BR": "First option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
       },
       {
         "type": "text",
         "id": "custom_input_one_option_two",
-        "label": "Second option",
-        "info": "Second radio button or drop down menu option",
-        "placeholder": "Enter option label"
+        "label": {
+          "de": "First option",
+          "en": "First option",
+          "es": "First option",
+          "fr": "First option",
+          "it": "First option",
+          "ja": "First option",
+          "pt-BR": "First option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
       },
       {
         "type": "text",
         "id": "custom_input_one_option_three",
-        "label": "Third option",
-        "info": "Third radio button or drop down menu option",
-        "placeholder": "Enter option label"
+        "label": {
+          "de": "Third option",
+          "en": "Third option",
+          "es": "Third option",
+          "fr": "Third option",
+          "it": "Third option",
+          "ja": "Third option",
+          "pt-BR": "Third option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
       },
       {
         "type": "text",
         "id": "custom_input_one_option_four",
-        "label": "Fourth option",
-        "info": "Fourth radio button or drop down menu option",
-        "placeholder": "Enter option label"
+        "label": {
+          "de": "Fourth option",
+          "en": "Fourth option",
+          "es": "Fourth option",
+          "fr": "Fourth option",
+          "it": "Fourth option",
+          "ja": "Fourth option",
+          "pt-BR": "Fourth option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "de": "Color Select Menu Options",
+          "en": "Color Select Menu Options",
+          "es": "Color Select Menu Options",
+          "fr": "Color Select Menu Options",
+          "it": "Color Select Menu Options",
+          "ja": "Color Select Menu Options",
+          "pt-BR": "Color Select Menu Options"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "de": "Empty labels will be ignored",
+          "en": "Empty labels will be ignored",
+          "es": "Empty labels will be ignored",
+          "fr": "Empty labels will be ignored",
+          "it": "Empty labels will be ignored",
+          "ja": "Empty labels will be ignored",
+          "pt-BR": "Empty labels will be ignored"
+        }
       },
       {
         "type": "color",
         "id": "custom_input_one_option_one_color",
-        "label": "First option color",
-        "info": "First option drop down color select menu"
+        "label": {
+          "de": "First option color",
+          "en": "First option color",
+          "es": "First option color",
+          "fr": "First option color",
+          "it": "First option color",
+          "ja": "First option color",
+          "pt-BR": "First option color"
+        }
       },
       {
         "type": "color",
         "id": "custom_input_one_option_two_color",
-        "label": "Second option color",
-        "info": "Second option drop down color select menu"
+        "label": {
+          "de": "Second option color",
+          "en": "Second option color",
+          "es": "Second option color",
+          "fr": "Second option color",
+          "it": "Second option color",
+          "ja": "Second option color",
+          "pt-BR": "Second option color"
+        }
       },
       {
         "type": "color",
         "id": "custom_input_one_option_three_color",
-        "label": "Third option color",
-        "info": "Third option drop down color select menu"
+        "label": {
+          "de": "Third option color",
+          "en": "Third option color",
+          "es": "Third option color",
+          "fr": "Third option color",
+          "it": "Third option color",
+          "ja": "Third option color",
+          "pt-BR": "Third option color"
+        }
       },
       {
         "type": "color",
         "id": "custom_input_one_option_four_color",
-        "label": "Fourth option color",
-        "info": "Fourth option drop down color select menu"
+        "label": {
+          "de": "Fourth option color",
+          "en": "Fourth option color",
+          "es": "Fourth option color",
+          "fr": "Fourth option color",
+          "it": "Fourth option color",
+          "ja": "Fourth option color",
+          "pt-BR": "Fourth option color"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "de": "Entrada personalizada - 2",
+      "en": "Custom Input - 2",
+      "es": "Entrada personalizada - 2",
+      "fr": "Entrée personnalisée  - 2",
+      "it": "Inserimento personalizzato - 2",
+      "ja": "カスタム入力 - 2",
+      "pt-BR": "Entrada Personalizada - 2"
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": {
+          "de": "Basic Setup",
+          "en": "Basic Setup",
+          "es": "Basic Setup",
+          "fr": "Basic Setup",
+          "it": "Basic Setup",
+          "ja": "Basic Setup",
+          "pt-BR": "Basic Setup"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_input_two_display",
+        "default": true,
+        "label": {
+          "de": "Show custom input",
+          "en": "Show custom input",
+          "es": "Show custom input",
+          "fr": "Show custom input",
+          "it": "Show custom input",
+          "ja": "Show custom input",
+          "pt-BR": "Show custom input"
+        },
+        "info" : {
+          "de": "Tick to display custom input",
+          "en": "Tick to display custom input",
+          "es": "Tick to display custom input",
+          "fr": "Tick to display custom input",
+          "it": "Tick to display custom input",
+          "ja": "Tick to display custom input",
+          "pt-BR": "Tick to display custom input"
+        }
+      },
+      {
+        "type": "radio",
+        "id": "custom_input_two_type",
+        "options": [
+          { "value": "radio_button",
+            "label": {
+              "de": "Radio buttons",
+              "en": "Radio buttons",
+              "es": "Radio buttons",
+              "fr": "Radio buttons",
+              "it": "Radio buttons",
+              "ja": "Radio buttons",
+              "pt-BR": "Radio buttons"
+              }
+            },
+            { "value": "drop_down",
+              "label": {
+               "de": "Drop down select menu",
+               "en": "Drop down select menu",
+               "es": "Drop down select menu",
+               "fr": "Drop down select menu",
+               "it": "Drop down select menu",
+               "ja": "Drop down select menu",
+               "pt-BR": "Drop down select menu"
+               }
+             },
+             { "value": "color_radio_button",
+              "label": {
+               "de": "Drop down color select menu",
+               "en": "Drop down color select menu",
+               "es": "Drop down color select menu",
+               "fr": "Drop down color select menu",
+               "it": "Drop down color select menu",
+               "ja": "Drop down color select menu",
+               "pt-BR": "Drop down color select menu"
+               }
+             },
+             { "value": "checkbox",
+              "label": {
+               "de": "Checkbox",
+               "en": "Checkbox",
+               "es": "Checkbox",
+               "fr": "Checkbox",
+               "it": "Checkbox",
+               "ja": "Checkbox",
+               "pt-BR": "Checkbox"
+               }
+             }
+        ],
+        "default": "radio_button",
+        "label": {
+          "de": "Type of custom input",
+          "en": "Type of custom input",
+          "es": "Type of custom input",
+          "fr": "Type of custom input",
+          "it": "Type of custom input",
+          "ja": "Type of custom input",
+          "pt-BR": "Type of custom input"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_input_two_optionality",
+        "default": true,
+        "label": {
+          "de": "Required",
+          "en": "Required",
+          "es": "Required",
+          "fr": "Required",
+          "it": "Required",
+          "ja": "Required",
+          "pt-BR": "Required"
+        },
+        "info" : {
+          "de": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "en": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "es": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "fr": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "it": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "ja": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "pt-BR": "Tick required if the custom input must be selected before the customer can add the item to the cart"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_two_label",
+        "label": {
+          "de": "Custom input label",
+          "en": "Custom input label",
+          "es": "Custom input label",
+          "fr": "Custom input label",
+          "it": "Custom input label",
+          "ja": "Custom input label",
+          "pt-BR": "Custom input label"
+        },
+        "default": "Shirt fit",
+        "info": {
+          "de": "Label that describes the custom input",
+          "en": "Label that describes the custom input",
+          "es": "Label that describes the custom input",
+          "fr": "Label that describes the custom input",
+          "it": "Label that describes the custom input",
+          "ja": "Label that describes the custom input",
+          "pt-BR": "Label that describes the custom input"
+        },
+        "placeholder": {
+          "de": "Enter custom input label",
+          "en": "Enter custom input label",
+          "es": "Enter custom input label",
+          "fr": "Enter custom input label",
+          "it": "Enter custom input label",
+          "ja": "Enter custom input label",
+          "pt-BR": "Enter custom input label"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "de": "Radio Button and Select Menu Options",
+          "en": "Radio Button and Select Menu Options",
+          "es": "Radio Button and Select Menu Options",
+          "fr": "Radio Button and Select Menu Options",
+          "it": "Radio Button and Select Menu Options",
+          "ja": "Radio Button and Select Menu Options",
+          "pt-BR": "Radio Button and Select Menu Options"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "de": "Empty labels will be ignored",
+          "en": "Empty labels will be ignored",
+          "es": "Empty labels will be ignored",
+          "fr": "Empty labels will be ignored",
+          "it": "Empty labels will be ignored",
+          "ja": "Empty labels will be ignored",
+          "pt-BR": "Empty labels will be ignored"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_two_option_one",
+        "label": {
+          "de": "First option",
+          "en": "First option",
+          "es": "First option",
+          "fr": "First option",
+          "it": "First option",
+          "ja": "First option",
+          "pt-BR": "First option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_two_option_two",
+        "label": {
+          "de": "First option",
+          "en": "First option",
+          "es": "First option",
+          "fr": "First option",
+          "it": "First option",
+          "ja": "First option",
+          "pt-BR": "First option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_two_option_three",
+        "label": {
+          "de": "Third option",
+          "en": "Third option",
+          "es": "Third option",
+          "fr": "Third option",
+          "it": "Third option",
+          "ja": "Third option",
+          "pt-BR": "Third option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_two_option_four",
+        "label": {
+          "de": "Fourth option",
+          "en": "Fourth option",
+          "es": "Fourth option",
+          "fr": "Fourth option",
+          "it": "Fourth option",
+          "ja": "Fourth option",
+          "pt-BR": "Fourth option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "de": "Color Select Menu Options",
+          "en": "Color Select Menu Options",
+          "es": "Color Select Menu Options",
+          "fr": "Color Select Menu Options",
+          "it": "Color Select Menu Options",
+          "ja": "Color Select Menu Options",
+          "pt-BR": "Color Select Menu Options"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "de": "Empty labels will be ignored",
+          "en": "Empty labels will be ignored",
+          "es": "Empty labels will be ignored",
+          "fr": "Empty labels will be ignored",
+          "it": "Empty labels will be ignored",
+          "ja": "Empty labels will be ignored",
+          "pt-BR": "Empty labels will be ignored"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_two_option_one_color",
+        "label": {
+          "de": "First option color",
+          "en": "First option color",
+          "es": "First option color",
+          "fr": "First option color",
+          "it": "First option color",
+          "ja": "First option color",
+          "pt-BR": "First option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_two_option_two_color",
+        "label": {
+          "de": "Second option color",
+          "en": "Second option color",
+          "es": "Second option color",
+          "fr": "Second option color",
+          "it": "Second option color",
+          "ja": "Second option color",
+          "pt-BR": "Second option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_two_option_three_color",
+        "label": {
+          "de": "Third option color",
+          "en": "Third option color",
+          "es": "Third option color",
+          "fr": "Third option color",
+          "it": "Third option color",
+          "ja": "Third option color",
+          "pt-BR": "Third option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_two_option_four_color",
+        "label": {
+          "de": "Fourth option color",
+          "en": "Fourth option color",
+          "es": "Fourth option color",
+          "fr": "Fourth option color",
+          "it": "Fourth option color",
+          "ja": "Fourth option color",
+          "pt-BR": "Fourth option color"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "de": "Entrada personalizada - 3",
+      "en": "Custom Input - 3",
+      "es": "Entrada personalizada - 3",
+      "fr": "Entrée personnalisée  - 3",
+      "it": "Inserimento personalizzato - 3",
+      "ja": "カスタム入力 - 3",
+      "pt-BR": "Entrada Personalizada - 3"
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": {
+          "de": "Basic Setup",
+          "en": "Basic Setup",
+          "es": "Basic Setup",
+          "fr": "Basic Setup",
+          "it": "Basic Setup",
+          "ja": "Basic Setup",
+          "pt-BR": "Basic Setup"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_input_three_display",
+        "default": true,
+        "label": {
+          "de": "Show custom input",
+          "en": "Show custom input",
+          "es": "Show custom input",
+          "fr": "Show custom input",
+          "it": "Show custom input",
+          "ja": "Show custom input",
+          "pt-BR": "Show custom input"
+        },
+        "info" : {
+          "de": "Tick to display custom input",
+          "en": "Tick to display custom input",
+          "es": "Tick to display custom input",
+          "fr": "Tick to display custom input",
+          "it": "Tick to display custom input",
+          "ja": "Tick to display custom input",
+          "pt-BR": "Tick to display custom input"
+        }
+      },
+      {
+        "type": "radio",
+        "id": "custom_input_three_type",
+        "options": [
+          { "value": "radio_button",
+            "label": {
+              "de": "Radio buttons",
+              "en": "Radio buttons",
+              "es": "Radio buttons",
+              "fr": "Radio buttons",
+              "it": "Radio buttons",
+              "ja": "Radio buttons",
+              "pt-BR": "Radio buttons"
+              }
+            },
+            { "value": "drop_down",
+              "label": {
+               "de": "Drop down select menu",
+               "en": "Drop down select menu",
+               "es": "Drop down select menu",
+               "fr": "Drop down select menu",
+               "it": "Drop down select menu",
+               "ja": "Drop down select menu",
+               "pt-BR": "Drop down select menu"
+               }
+             },
+             { "value": "color_radio_button",
+              "label": {
+               "de": "Drop down color select menu",
+               "en": "Drop down color select menu",
+               "es": "Drop down color select menu",
+               "fr": "Drop down color select menu",
+               "it": "Drop down color select menu",
+               "ja": "Drop down color select menu",
+               "pt-BR": "Drop down color select menu"
+               }
+             },
+             { "value": "checkbox",
+              "label": {
+               "de": "Checkbox",
+               "en": "Checkbox",
+               "es": "Checkbox",
+               "fr": "Checkbox",
+               "it": "Checkbox",
+               "ja": "Checkbox",
+               "pt-BR": "Checkbox"
+               }
+             }
+        ],
+        "default": "checkbox",
+        "label": {
+          "de": "Type of custom input",
+          "en": "Type of custom input",
+          "es": "Type of custom input",
+          "fr": "Type of custom input",
+          "it": "Type of custom input",
+          "ja": "Type of custom input",
+          "pt-BR": "Type of custom input"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_input_three_optionality",
+        "default": true,
+        "label": {
+          "de": "Required",
+          "en": "Required",
+          "es": "Required",
+          "fr": "Required",
+          "it": "Required",
+          "ja": "Required",
+          "pt-BR": "Required"
+        },
+        "info" : {
+          "de": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "en": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "es": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "fr": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "it": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "ja": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "pt-BR": "Tick required if the custom input must be selected before the customer can add the item to the cart"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_three_label",
+        "label": {
+          "de": "Custom input label",
+          "en": "Custom input label",
+          "es": "Custom input label",
+          "fr": "Custom input label",
+          "it": "Custom input label",
+          "ja": "Custom input label",
+          "pt-BR": "Custom input label"
+        },
+        "default": "Cuff Links",
+        "info": {
+          "de": "Label that describes the custom input",
+          "en": "Label that describes the custom input",
+          "es": "Label that describes the custom input",
+          "fr": "Label that describes the custom input",
+          "it": "Label that describes the custom input",
+          "ja": "Label that describes the custom input",
+          "pt-BR": "Label that describes the custom input"
+        },
+        "placeholder": {
+          "de": "Enter custom input label",
+          "en": "Enter custom input label",
+          "es": "Enter custom input label",
+          "fr": "Enter custom input label",
+          "it": "Enter custom input label",
+          "ja": "Enter custom input label",
+          "pt-BR": "Enter custom input label"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "de": "Radio Button and Select Menu Options",
+          "en": "Radio Button and Select Menu Options",
+          "es": "Radio Button and Select Menu Options",
+          "fr": "Radio Button and Select Menu Options",
+          "it": "Radio Button and Select Menu Options",
+          "ja": "Radio Button and Select Menu Options",
+          "pt-BR": "Radio Button and Select Menu Options"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "de": "Empty labels will be ignored",
+          "en": "Empty labels will be ignored",
+          "es": "Empty labels will be ignored",
+          "fr": "Empty labels will be ignored",
+          "it": "Empty labels will be ignored",
+          "ja": "Empty labels will be ignored",
+          "pt-BR": "Empty labels will be ignored"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_three_option_one",
+        "label": {
+          "de": "First option",
+          "en": "First option",
+          "es": "First option",
+          "fr": "First option",
+          "it": "First option",
+          "ja": "First option",
+          "pt-BR": "First option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_three_option_two",
+        "label": {
+          "de": "First option",
+          "en": "First option",
+          "es": "First option",
+          "fr": "First option",
+          "it": "First option",
+          "ja": "First option",
+          "pt-BR": "First option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_three_option_three",
+        "label": {
+          "de": "Third option",
+          "en": "Third option",
+          "es": "Third option",
+          "fr": "Third option",
+          "it": "Third option",
+          "ja": "Third option",
+          "pt-BR": "Third option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_three_option_four",
+        "label": {
+          "de": "Fourth option",
+          "en": "Fourth option",
+          "es": "Fourth option",
+          "fr": "Fourth option",
+          "it": "Fourth option",
+          "ja": "Fourth option",
+          "pt-BR": "Fourth option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "de": "Color Select Menu Options",
+          "en": "Color Select Menu Options",
+          "es": "Color Select Menu Options",
+          "fr": "Color Select Menu Options",
+          "it": "Color Select Menu Options",
+          "ja": "Color Select Menu Options",
+          "pt-BR": "Color Select Menu Options"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "de": "Empty labels will be ignored",
+          "en": "Empty labels will be ignored",
+          "es": "Empty labels will be ignored",
+          "fr": "Empty labels will be ignored",
+          "it": "Empty labels will be ignored",
+          "ja": "Empty labels will be ignored",
+          "pt-BR": "Empty labels will be ignored"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_three_option_one_color",
+        "label": {
+          "de": "First option color",
+          "en": "First option color",
+          "es": "First option color",
+          "fr": "First option color",
+          "it": "First option color",
+          "ja": "First option color",
+          "pt-BR": "First option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_three_option_two_color",
+        "label": {
+          "de": "Second option color",
+          "en": "Second option color",
+          "es": "Second option color",
+          "fr": "Second option color",
+          "it": "Second option color",
+          "ja": "Second option color",
+          "pt-BR": "Second option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_three_option_three_color",
+        "label": {
+          "de": "Third option color",
+          "en": "Third option color",
+          "es": "Third option color",
+          "fr": "Third option color",
+          "it": "Third option color",
+          "ja": "Third option color",
+          "pt-BR": "Third option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_three_option_four_color",
+        "label": {
+          "de": "Fourth option color",
+          "en": "Fourth option color",
+          "es": "Fourth option color",
+          "fr": "Fourth option color",
+          "it": "Fourth option color",
+          "ja": "Fourth option color",
+          "pt-BR": "Fourth option color"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "de": "Entrada personalizada - 4",
+      "en": "Custom Input - 4",
+      "es": "Entrada personalizada - 4",
+      "fr": "Entrée personnalisée  - 4",
+      "it": "Inserimento personalizzato - 4",
+      "ja": "カスタム入力 - 4",
+      "pt-BR": "Entrada Personalizada - 4"
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": {
+          "de": "Basic Setup",
+          "en": "Basic Setup",
+          "es": "Basic Setup",
+          "fr": "Basic Setup",
+          "it": "Basic Setup",
+          "ja": "Basic Setup",
+          "pt-BR": "Basic Setup"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_input_four_display",
+        "default": true,
+        "label": {
+          "de": "Show custom input",
+          "en": "Show custom input",
+          "es": "Show custom input",
+          "fr": "Show custom input",
+          "it": "Show custom input",
+          "ja": "Show custom input",
+          "pt-BR": "Show custom input"
+        },
+        "info" : {
+          "de": "Tick to display custom input",
+          "en": "Tick to display custom input",
+          "es": "Tick to display custom input",
+          "fr": "Tick to display custom input",
+          "it": "Tick to display custom input",
+          "ja": "Tick to display custom input",
+          "pt-BR": "Tick to display custom input"
+        }
+      },
+      {
+        "type": "radio",
+        "id": "custom_input_four_type",
+        "options": [
+          { "value": "radio_button",
+            "label": {
+              "de": "Radio buttons",
+              "en": "Radio buttons",
+              "es": "Radio buttons",
+              "fr": "Radio buttons",
+              "it": "Radio buttons",
+              "ja": "Radio buttons",
+              "pt-BR": "Radio buttons"
+              }
+            },
+            { "value": "drop_down",
+              "label": {
+               "de": "Drop down select menu",
+               "en": "Drop down select menu",
+               "es": "Drop down select menu",
+               "fr": "Drop down select menu",
+               "it": "Drop down select menu",
+               "ja": "Drop down select menu",
+               "pt-BR": "Drop down select menu"
+               }
+             },
+             { "value": "color_radio_button",
+              "label": {
+               "de": "Drop down color select menu",
+               "en": "Drop down color select menu",
+               "es": "Drop down color select menu",
+               "fr": "Drop down color select menu",
+               "it": "Drop down color select menu",
+               "ja": "Drop down color select menu",
+               "pt-BR": "Drop down color select menu"
+               }
+             },
+             { "value": "checkbox",
+              "label": {
+               "de": "Checkbox",
+               "en": "Checkbox",
+               "es": "Checkbox",
+               "fr": "Checkbox",
+               "it": "Checkbox",
+               "ja": "Checkbox",
+               "pt-BR": "Checkbox"
+               }
+             }
+        ],
+        "default": "checkbox",
+        "label": {
+          "de": "Type of custom input",
+          "en": "Type of custom input",
+          "es": "Type of custom input",
+          "fr": "Type of custom input",
+          "it": "Type of custom input",
+          "ja": "Type of custom input",
+          "pt-BR": "Type of custom input"
+        }
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_input_four_optionality",
+        "default": true,
+        "label": {
+          "de": "Required",
+          "en": "Required",
+          "es": "Required",
+          "fr": "Required",
+          "it": "Required",
+          "ja": "Required",
+          "pt-BR": "Required"
+        },
+        "info" : {
+          "de": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "en": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "es": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "fr": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "it": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "ja": "Tick required if the custom input must be selected before the customer can add the item to the cart",
+          "pt-BR": "Tick required if the custom input must be selected before the customer can add the item to the cart"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_four_label",
+        "label": {
+          "de": "Custom input label",
+          "en": "Custom input label",
+          "es": "Custom input label",
+          "fr": "Custom input label",
+          "it": "Custom input label",
+          "ja": "Custom input label",
+          "pt-BR": "Custom input label"
+        },
+        "default": "Cuff Links",
+        "info": {
+          "de": "Label that describes the custom input",
+          "en": "Label that describes the custom input",
+          "es": "Label that describes the custom input",
+          "fr": "Label that describes the custom input",
+          "it": "Label that describes the custom input",
+          "ja": "Label that describes the custom input",
+          "pt-BR": "Label that describes the custom input"
+        },
+        "placeholder": {
+          "de": "Enter custom input label",
+          "en": "Enter custom input label",
+          "es": "Enter custom input label",
+          "fr": "Enter custom input label",
+          "it": "Enter custom input label",
+          "ja": "Enter custom input label",
+          "pt-BR": "Enter custom input label"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "de": "Radio Button and Select Menu Options",
+          "en": "Radio Button and Select Menu Options",
+          "es": "Radio Button and Select Menu Options",
+          "fr": "Radio Button and Select Menu Options",
+          "it": "Radio Button and Select Menu Options",
+          "ja": "Radio Button and Select Menu Options",
+          "pt-BR": "Radio Button and Select Menu Options"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "de": "Empty labels will be ignored",
+          "en": "Empty labels will be ignored",
+          "es": "Empty labels will be ignored",
+          "fr": "Empty labels will be ignored",
+          "it": "Empty labels will be ignored",
+          "ja": "Empty labels will be ignored",
+          "pt-BR": "Empty labels will be ignored"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_four_option_one",
+        "label": {
+          "de": "First option",
+          "en": "First option",
+          "es": "First option",
+          "fr": "First option",
+          "it": "First option",
+          "ja": "First option",
+          "pt-BR": "First option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_four_option_two",
+        "label": {
+          "de": "First option",
+          "en": "First option",
+          "es": "First option",
+          "fr": "First option",
+          "it": "First option",
+          "ja": "First option",
+          "pt-BR": "First option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_four_option_three",
+        "label": {
+          "de": "Third option",
+          "en": "Third option",
+          "es": "Third option",
+          "fr": "Third option",
+          "it": "Third option",
+          "ja": "Third option",
+          "pt-BR": "Third option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "text",
+        "id": "custom_input_four_option_four",
+        "label": {
+          "de": "Fourth option",
+          "en": "Fourth option",
+          "es": "Fourth option",
+          "fr": "Fourth option",
+          "it": "Fourth option",
+          "ja": "Fourth option",
+          "pt-BR": "Fourth option"
+        },
+        "placeholder": {
+          "de": "Enter option label",
+          "en": "Enter option label",
+          "es": "Enter option label",
+          "fr": "Enter option label",
+          "it": "Enter option label",
+          "ja": "Enter option label",
+          "pt-BR": "Enter option label"
+        }
+      },
+      {
+        "type": "header",
+        "content": {
+          "de": "Color Select Menu Options",
+          "en": "Color Select Menu Options",
+          "es": "Color Select Menu Options",
+          "fr": "Color Select Menu Options",
+          "it": "Color Select Menu Options",
+          "ja": "Color Select Menu Options",
+          "pt-BR": "Color Select Menu Options"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": {
+          "de": "Empty labels will be ignored",
+          "en": "Empty labels will be ignored",
+          "es": "Empty labels will be ignored",
+          "fr": "Empty labels will be ignored",
+          "it": "Empty labels will be ignored",
+          "ja": "Empty labels will be ignored",
+          "pt-BR": "Empty labels will be ignored"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_four_option_one_color",
+        "label": {
+          "de": "First option color",
+          "en": "First option color",
+          "es": "First option color",
+          "fr": "First option color",
+          "it": "First option color",
+          "ja": "First option color",
+          "pt-BR": "First option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_four_option_two_color",
+        "label": {
+          "de": "Second option color",
+          "en": "Second option color",
+          "es": "Second option color",
+          "fr": "Second option color",
+          "it": "Second option color",
+          "ja": "Second option color",
+          "pt-BR": "Second option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_four_option_three_color",
+        "label": {
+          "de": "Third option color",
+          "en": "Third option color",
+          "es": "Third option color",
+          "fr": "Third option color",
+          "it": "Third option color",
+          "ja": "Third option color",
+          "pt-BR": "Third option color"
+        }
+      },
+      {
+        "type": "color",
+        "id": "custom_input_four_option_four_color",
+        "label": {
+          "de": "Fourth option color",
+          "en": "Fourth option color",
+          "es": "Fourth option color",
+          "fr": "Fourth option color",
+          "it": "Fourth option color",
+          "ja": "Fourth option color",
+          "pt-BR": "Fourth option color"
+        }
       }
     ]
   }
