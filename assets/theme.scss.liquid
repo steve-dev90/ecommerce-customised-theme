@@ -6352,15 +6352,6 @@ line-item__selector--required-indicator {
   float: right;
 }
 
-.order-form__cart-total {
-  display: inline-block;
-  padding-top: 10px;
-
-  @include media-query($medium-up) {
-    float: right;
-  }
-}
-
 .order-form__error-message {
   display: none;
   text-transform: uppercase;
@@ -6374,12 +6365,38 @@ line-item__selector--required-indicator {
   width: 100%;
 }
 
-.order-form__stickybar {
+.order-form__menubar {
+  @include media-query($medium-down) {
+    text-align: center;
+  }
+}
+
+.order-form__menubar input {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.order-form__menubar--sticky {
   position: fixed;
   width: 100%;
   max-width: ($width-site - $gutter-site * 2);
   background-color: $color-body;
   z-index: $z-index-stickynav;
+
+  @include media-query($medium-down) {
+    max-width: $width-site
+  }
+
+}
+
+.order-form__menubar--cart-total {
+  display: block;
+  padding-top: 10px;
+
+  @include media-query($medium-up) {
+    display: inline-block;
+    float: right;
+  }
 }
 
 .order-form__tablecell--line-properties {
@@ -6409,6 +6426,11 @@ line-item__selector--required-indicator {
   flex-flow: row wrap;
   justify-content: space-between;
   align-content: flex-start;
+}
+
+.order-form__tablecell-bottomrows--mobile {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .order-form__tablecell-toprow--mobile {

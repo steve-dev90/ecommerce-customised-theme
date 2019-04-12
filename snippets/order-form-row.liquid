@@ -16,14 +16,16 @@
           </div>
         </div>
       </div>
-      <div>
-        {% include 'order-form-options' %}
-      </div>
-      <div>
-        {% include 'order-form-variant' %}
-      </div>
-      <div>
-        {% include 'order-form-quantity' mobile: 'm' %}
+      <div class="order-form__tablecell-bottomrows--mobile" >
+        <div >
+          {% include 'order-form-options' %}
+        </div>
+        <div>
+          {% include 'order-form-variant' %}
+        </div>
+        <div>
+          {% include 'order-form-quantity', mobile: 'm' %}
+        </div>
       </div>
     </td>
 

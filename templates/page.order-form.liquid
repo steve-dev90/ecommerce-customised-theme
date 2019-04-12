@@ -30,11 +30,11 @@ Based on source: https://gist.github.com/carolineschnapp/9122054
     </header>
 
     {% if collection.products_count > 0 %}
-      <div id="StickyOrderFormBar">
+      <div id="StickyOrderFormBar" class="order-form__menubar">
         <input class="btn btn--secondary-accent" type="submit" id="post-order" value="{{ 'order_form.go_to_checkout' | t }}" />
         <input class="btn btn--secondary-accent" type="submit" id="post-to-cart" value="{{ 'order_form.save_to_cart' | t }}" />
         <span class="order-form__error-message">Check that you have selected all required options </span>
-        <h4 class="order-form__cart-total"><b>{{ 'order_form.cart_total' | t }} : </b> <span class="cart-total">{{ cart.total_price | money}}</span><h4>
+        <h4 class="order-form__menubar--cart-total"><b>{{ 'order_form.cart_total' | t }} : </b> <span class="cart-total">{{ cart.total_price | money}}</span><h4>
       </div>
     {% endif %}
 

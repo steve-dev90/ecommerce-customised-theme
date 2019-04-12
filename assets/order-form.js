@@ -15,10 +15,10 @@ $(function() {
   $(window).on('scroll.stickynav', function() {
     var scroll = $(window).scrollTop();
     if (scroll >= sticky) {
-      $('#StickyOrderFormBar').addClass('order-form__stickybar');
+      $('#StickyOrderFormBar').addClass('order-form__menubar--sticky');
       $('#StickyOrderFormBar').css("top", barOffset);
      } else {
-      $('#StickyOrderFormBar').removeClass('order-form__stickybar');
+      $('#StickyOrderFormBar').removeClass('order-form__menubar--sticky');
     }
   });
 
@@ -82,14 +82,8 @@ $(function() {
     $(selectedRowCell).find('.selected-line-properties').html(line_prop_html);
   };
 
-  var getParameter = function(parameter, selector) {
-    var variantId = $(selector).find('select').val() || $(selector).find('data').val();
-    var parameterId = '#'+ parameter + '-' + variantId + '-' + $(selector).attr('row');
-    return $(selector).find(parameterId);
-  };
-
   //Initial form setup
-  var variantParameterIds = ['p', 'pm', 'q', 'qm', 'qem', 'qemm'];
+  var variantParameterIds = ['p', 'pm', 'q', 'qm'];
 
   $( document ).ready(function() {
     $("tr[row='1']").show();
@@ -107,34 +101,43 @@ $(function() {
   });
 
   // Change the price and quantity to align with the selected option
-  $('select').change(function(){
-    rowElement = $(this);
+  $('select').change(function() {
+    var rowElement = $(this)
     $.each(variantParameterIds, function(index, value) {
-      variantParameterId = '#' + value + '-' + rowElement.val() + '-' + rowElement.parents('tr').attr('row');
+      var variantParameterId = '#' + value + '-' + rowElement.val() + '-' + rowElement.parents('tr').attr('row');;
       $(variantParameterId).siblings().hide();
       $(variantParameterId).show();
     });
   });
 
   // Add another row if selected variant has line item properties or options
-  $('tr').change(function() {
-    var quantity = parseInt(getParameter('q', this).val());
+  $('input').change(function() {
+    var quantity = $(this).val();
     if (quantity > 0) {
-      $(this).next().fadeIn();
+      $(this).parents('tr').next().fadeIn();
   	}
   });
 
   // Running cart total
+  var getParameter = function(parameter, selector) {
+    var variantId = $(selector).find('select').val() || $(selector).find('data').val();
+    // console.log(variantId)
+    var parameterId = '#'+ parameter + '-' + variantId + '-' + $(selector).attr('row');
+    return $(selector).find(parameterId);
+  };
   var initailCartTotal = parseFloat($('.cart-total').text().replace('$','').replace(',',''));
+
   $('.quantity-field').change(function() {
     var cartTotal = 0
-    $('tr').each(function(){
-      var price = parseFloat(getParameter('p', this).text().slice(2));
-      var quantity = parseInt(getParameter('q', this).val());
+    $('tr').each(function() {
+      var price = parseFloat(getParameter('p', this).text().slice(2)) ||
+        parseFloat(getParameter('pm', this).text().slice(2));
+      var quantity = parseInt(getParameter('q', this).val()) ||
+        parseInt(getParameter('qm', this).val());
       cartTotal += price*quantity;
     });
     cartTotal += initailCartTotal
-    $('.cart-total').html(cartTotal.toFixed(2));
+    $('.cart-total').html('$' + cartTotal.toFixed(2));
   });
 
   // ***** ORDER AND SAVE TO CART PROCESSING *****
