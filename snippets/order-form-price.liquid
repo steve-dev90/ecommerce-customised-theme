@@ -1,7 +1,6 @@
-      {% for variant in product.variants %}
-        <p class="price" id="p{{ mobile }}-{{ variant.id }}-{{row_id}}"> {{ variant.price | money }} </p>
-        {% if variant.compare_at_price > variant.price %}
-          <p class="order-form__tablecell--price-discount"> {{ variant.compare_at_price | money }} </p>
-        {% endif %}
-
-      {% endfor %}
+{% for variant in product.variants %}
+  <p class="price" id="p{{ mobile }}-{{ variant.id }}-{{row_id}}"> {{ variant.price | money }} </p>
+  {% if variant.compare_at_price > variant.price %}
+    <p class="order-form__tablecell--price-discount"> {{ variant.compare_at_price | money }} </p>
+  {% endif %}
+{% endfor %}

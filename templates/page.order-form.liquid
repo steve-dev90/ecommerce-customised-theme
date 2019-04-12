@@ -49,7 +49,7 @@ Based on source: https://gist.github.com/carolineschnapp/9122054
     {% endif %}
 
     {% if collection.products_count > 0 %}
-	    <div class="order-form__table--overflow">
+	    <div>
         <table class="order-form__table"
           {% if settings.custom_input_one_optionality %} data-required-0="{{ settings.custom_input_one_label }}" {% endif %}
           {% if settings.custom_input_two_optionality %} data-required-1="{{ settings.custom_input_two_label }}" {% endif %}

@@ -89,32 +89,31 @@ $(function() {
   };
 
   //Initial form setup
+  var variantParameterIds = ['p', 'pm', 'q', 'qm', 'qem', 'qemm'];
+
   $( document ).ready(function() {
     $("tr[row='1']").show();
     $('.price').hide();
     $('.quantity-field').hide();
+
     $('tr').each(function() {
-      var variantId = $(this).find('select').val() || $(this).find('data').val();
-      var priceId = '#p-' + variantId + '-' + $(this).attr('row');
-      var quantityId = '#q-' + variantId + '-' + $(this).attr('row');
-      var quantityErrorMessageId = '#qem-' + variantId + '-' + $(this).attr('row');
-      $(priceId).show();
-      $(quantityId).show();
-      $(quantityErrorMessageId).show();
+      var rowElement = $(this);
+      var variantId = rowElement.find('select').val() || $(this).find('data').val();
+      $.each(variantParameterIds, function(index, value) {
+        variantParameterId = '#' + value + '-' + variantId + '-' + rowElement.attr('row');
+        $(variantParameterId).show();
+      });
     });
   });
 
   // Change the price and quantity to align with the selected option
   $('select').change(function(){
-    var priceId = '#p-' + $(this).val() + '-' + $(this).parents('tr').attr('row');
-    var quantityId = '#q-' + $(this).val() + '-' + $(this).parents('tr').attr('row');
-    var quantityErrorMessageId = '#qem-' + $(this).val() + '-' + $(this).parents('tr').attr('row');
- 	  $(priceId).siblings().hide();
-    $(priceId).show();
-    $(quantityId).siblings().hide();
-    $(quantityId).show();
-    $(quantityErrorMessageId).siblings().hide();
-    $(quantityErrorMessageId).show();
+    rowElement = $(this);
+    $.each(variantParameterIds, function(index, value) {
+      variantParameterId = '#' + value + '-' + rowElement.val() + '-' + rowElement.parents('tr').attr('row');
+      $(variantParameterId).siblings().hide();
+      $(variantParameterId).show();
+    });
   });
 
   // Add another row if selected variant has line item properties or options

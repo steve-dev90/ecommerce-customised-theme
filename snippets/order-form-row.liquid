@@ -3,11 +3,18 @@
   <tr row="{{row_id}}" style="display:none;">
 
     <td class="order-form__tablecell--mobile">
-      <div>
-        {% include 'order-form-image' %}
-      </div>
-      <div>
-        {% include 'order-form-title' %}
+      <div class="order-form__tablecell-toprow-container--mobile">
+        <div class="order-form__tablecell-toprow--mobile">
+          {% include 'order-form-image' %}
+        </div>
+        <div class="order-form__tablecell-toprow--mobile">
+          <div>
+            {% include 'order-form-title' %}
+          </div>
+          <div>
+            {% include 'order-form-price', mobile: 'm' %}
+          </div>
+        </div>
       </div>
       <div>
         {% include 'order-form-options' %}
@@ -16,10 +23,7 @@
         {% include 'order-form-variant' %}
       </div>
       <div>
-        {% include 'order-form-price', mobile: 'm' %}
-      </div>
-      <div>
-        {% include 'order-form-quantity' %}
+        {% include 'order-form-quantity' mobile: 'm' %}
       </div>
     </td>
 
@@ -39,7 +43,7 @@
       {% include 'order-form-price', mobile: '' %}
     </td>
     <td class="order-form__tablecell--center order-form__tablecell--quantity order-form__tablecell--not-mobile">
-      {% include 'order-form-quantity' %}
+      {% include 'order-form-quantity', mobile: '' %}
     </td>
 
   </tr>

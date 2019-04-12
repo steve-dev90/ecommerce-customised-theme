@@ -6320,7 +6320,6 @@ body {
 .line-item__selector {
   width: 40%;
   margin-bottom: 10px;
-  float: right;
 }
 
 .line-item__container {
@@ -6373,7 +6372,6 @@ line-item__selector--required-indicator {
   background-color: white;
   table-layout: fixed ;
   width: 100%;
-  min-width: 1000px;
 }
 
 .order-form__stickybar {
@@ -6392,10 +6390,6 @@ line-item__selector--required-indicator {
   margin-top: 10px;
 }
 
-.order-form__table--overflow {
-  overflow-x:auto;
-}
-
 .order-form__tablecell--mobile {
   display: none;
 
@@ -6408,6 +6402,18 @@ line-item__selector--required-indicator {
   @include media-query($medium-down) {
     display: none;
   }
+}
+
+.order-form__tablecell-toprow-container--mobile {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.order-form__tablecell-toprow--mobile {
+  width: 40%;
+  margin-bottom: 10px;
 }
 
 .order-form__tablecell--center {
