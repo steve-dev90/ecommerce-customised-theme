@@ -2,45 +2,44 @@
   {% assign first_variant = product.first_available_variant %}
   <tr row="{{row_id}}" style="display:none;">
 
-    <td>
-      <a href="{{ first_variant.url | collection }}" >
-        <img src="{{ first_variant.image | default: product.featured_image | img_url: 'small' }}" alt="{{ first_variant.title | escape }}" />
-      </a>
+    <td class="order-form__tablecell--mobile">
+      <div>
+        {% include 'order-form-image' %}
+      </div>
+      <div>
+        {% include 'order-form-title' %}
+      </div>
+      <div>
+        {% include 'order-form-options' %}
+      </div>
+      <div>
+        {% include 'order-form-variant' %}
+      </div>
+      <div>
+        {% include 'order-form-price', mobile: 'm' %}
+      </div>
+      <div>
+        {% include 'order-form-quantity' %}
+      </div>
     </td>
-    <td class="order-form__tablecell--title">
-      <a href="{{ first_variant.url | collection }}">
-        <span class="product-card__name link-accent-color">{{ product.title }}</span>
-      </a>
+
+    <td class="order-form__tablecell--not-mobile">
+      {% include 'order-form-image' %}
     </td>
-    <td class="line-properties">
-      {% if product.template_suffix == 'customizable' %}
-        <div class="selected-line-properties"></div>
-        <a class="configure-options">Select options</a>
-        <div>
-          <span class="order-form__tablecell--popuptext" style="display:none;">Select an option</span>
-        </div>
-      {% endif %}
+    <td class="order-form__tablecell--title order-form__tablecell--not-mobile">
+      {% include 'order-form-title' %}
     </td>
-    <td class="order-form__tablecell--center">
-      {% if product.variants.size > 1 %}
-        <select name="id" >
-          {% for variant in product.variants %}
-            <option value="{{variant.id}}">{{ variant.title }}</option>
-          {% endfor %}
-        </select>
-      {% else %}
-        <data value="{{first_variant.id}}"></data>
-      {% endif %}
+    <td class="line-properties order-form__tablecell--not-mobile">
+      {% include 'order-form-options' %}
     </td>
-    <td class="order-form__tablecell--center">
-      {% for variant in product.variants %}
-        <p class="price" id="p-{{ variant.id }}-{{row_id}}"> {{ variant.price | money }} </p>
-      {% endfor %}
+    <td class="order-form__tablecell--center order-form__tablecell--not-mobile">
+      {% include 'order-form-variant' %}
     </td>
-    <td class="order-form__tablecell--center order-form__tablecell--quantity">
-      {% for variant in product.variants %}
-        <input onfocus="this.select()" id="q-{{ variant.id }}-{{row_id}}" class="quantity-field" min="0" {% unless variant.inventory_management == blank or variant.inventory_policy == 'continue' %} max="{{ variant.inventory_quantity }}" {% endunless %} type="number" value="0" tabindex="1" />
-      {% endfor %}
+    <td class="order-form__tablecell--center order-form__tablecell--not-mobile">
+      {% include 'order-form-price', mobile: '' %}
+    </td>
+    <td class="order-form__tablecell--center order-form__tablecell--quantity order-form__tablecell--not-mobile">
+      {% include 'order-form-quantity' %}
     </td>
 
   </tr>

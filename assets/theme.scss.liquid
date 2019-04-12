@@ -4047,7 +4047,7 @@ html {
   }
 }
 
-/*================ Product image modal ================*/
+/*================ Product image  ================*/
 .product-modal__image {
   display: block;
   position: relative;
@@ -6348,6 +6348,11 @@ line-item__selector--required-indicator {
   margin-bottom: 4rem;
 }
 
+.order-form__collection-selector {
+  display: block;
+  float: right;
+}
+
 .order-form__cart-total {
   display: inline-block;
   padding-top: 10px;
@@ -6371,8 +6376,38 @@ line-item__selector--required-indicator {
   min-width: 1000px;
 }
 
+.order-form__stickybar {
+  position: fixed;
+  width: 100%;
+  max-width: ($width-site - $gutter-site * 2);
+  background-color: $color-body;
+  z-index: $z-index-stickynav;
+}
+
+.order-form__tablecell--line-properties {
+  margin-bottom: 0;
+}
+
+.configure-options {
+  margin-top: 10px;
+}
+
 .order-form__table--overflow {
   overflow-x:auto;
+}
+
+.order-form__tablecell--mobile {
+  display: none;
+
+  @include media-query($medium-down) {
+    display: block;
+  }
+}
+
+.order-form__tablecell--not-mobile {
+  @include media-query($medium-down) {
+    display: none;
+  }
 }
 
 .order-form__tablecell--center {
@@ -6386,6 +6421,10 @@ line-item__selector--required-indicator {
 
 .order-form__tablecell--title {
   width: 15rem;
+}
+
+.order-form__tablecell--price-discount {
+  text-decoration: line-through;
 }
 
 .quantity-field {
@@ -6418,8 +6457,20 @@ line-item__selector--required-indicator {
 
 .order-form-modal__inner {
   background-color: white;
-  margin: auto;
+  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  z-index: 100;
+  position: relative;
+}
+
+.order-form-modal__close {
+  float: right;
+}
+
+#order-form-modal {
+  &.modal--is-active {
+    background-color: rgba(0,0,0,0.4);
+  }
 }

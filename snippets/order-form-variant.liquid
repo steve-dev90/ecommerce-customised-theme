@@ -1,0 +1,9 @@
+      {% if product.variants.size > 1 %}
+        <select name="id" >
+          {% for variant in product.variants %}
+            <option value="{{variant.id}}">{{ variant.title }}</option>
+          {% endfor %}
+        </select>
+      {% else %}
+        <data value="{{first_variant.id}}"></data>
+      {% endif %}

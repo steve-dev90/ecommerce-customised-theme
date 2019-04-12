@@ -1,4 +1,4 @@
-{% assign selected_collection = canonical_url | split: "/" | last  %}
+{% assign selected_collection = canonical_url | split: "/" | last | split: "?" | first  %}
 {% if selected_collection == "order-form" %}
   {% assign collection = collections.all %}
 {% else %}
@@ -9,27 +9,32 @@
 Based on source: https://gist.github.com/carolineschnapp/9122054
 {% endcomment %}
 
-{% paginate collection.products by 100 %}
+{% paginate collection.products by 8 %}
 <div class="page-width">
-  <form action="/cart" id="post-order" >
+  <form action="/cart" >
 
-    <div class="order-form__page-title">
-      <h1>{% if template contains 'page' %}{{ page.title }}{% else %}{{ collection.title }}{% endif %}</h1>
-    </div>
-
-    <div>
-      <select id='select-collection'>
-        {% for collection in collections %}
-          <option value="{{ collection.handle }}">{{ collection.title }}</option>
-        {% endfor %}
-      </select>
-    </div>
+    <header class="grid medium-up--grid--table section-header small--text-center">
+      <div class="grid__item medium-up--one-half section-header__item">
+        <h1 class="section-header__title">{% if template contains 'page' %}{{ page.title }}{% else %}{{ collection.title }}{% endif %}</h1>
+      </div>
+      <div class="grid__item medium-up--one-half medium-up--text-right section-header__item">
+        <div class="collection-sort">
+          <label class="collection-sort__label">{{ 'collections.sorting.title_tags' | t }}</label>
+          <select id='select-collection' class="collection-sort__input">
+            {% for collection in collections %}
+              <option value="{{ collection.handle }}">{{ collection.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </header>
 
     {% if collection.products_count > 0 %}
-      <div>
-        <input  class="btn btn--secondary-accent" type="submit" value="Order" />
+      <div id="StickyOrderFormBar">
+        <input class="btn btn--secondary-accent" type="submit" id="post-order" value="{{ 'order_form.go_to_checkout' | t }}" />
+        <input class="btn btn--secondary-accent" type="submit" id="post-to-cart" value="{{ 'order_form.save_to_cart' | t }}" />
         <span class="order-form__error-message">Check that you have selected all required options </span>
-        <h4 class="order-form__cart-total"><b>Cart total : </b> $<span class="cart-total">0.00</span><h4>
+        <h4 class="order-form__cart-total"><b>{{ 'order_form.cart_total' | t }} : </b> <span class="cart-total">{{ cart.total_price | money}}</span><h4>
       </div>
     {% endif %}
 
@@ -69,21 +74,24 @@ Based on source: https://gist.github.com/carolineschnapp/9122054
       </div>
     {% endif %}
 
-    <div>
-      <input type="submit" class="btn btn--secondary-accent" value="Order" />
-      <span class="order-form__error-message">Check that you have selected your {{ settings.inline_required }} </span>
-      <h4 class="order-form__cart-total"><b>Cart total : </b> $<span class="cart-total">0.00</span></h4>
-    </div>
-
   </form>
+
+  {% if paginate.pages > 1 %}
+    <div class="pagination">
+      {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+    </div>
+    <div class='save-to-cart' style="margin: 0 auto; width: 100%">
+      <div class="order-form__tablecell--popuptext" style="display:none;">{{ 'order_form.make_sure_to_save_to_cart' | t }}</div>
+    </div>
+  {% endif %}
 </div>
 
 <div id="order-form-modal" class="modal">
   <div class="order-form-modal__inner">
-    <button type="button" class="btn modal__close order-form-modal__close">
+    <div class="order-form-modal__close">
       {% include 'icon-close' %}
       <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t | json }}</span>
-    </button>
+    </div>
     <div class="line-item__container">
       {% assign custom_numbers = "one two three four" | split: ' ' %}
       {% assign custom_required_text = true %}

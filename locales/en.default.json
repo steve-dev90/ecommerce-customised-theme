@@ -319,5 +319,16 @@
   "video": {
     "play": "Play video",
     "close": "Stop video"
+  },
+  "order_form": {
+    "save_to_cart": "Save to Cart",
+    "go_to_checkout": "Go to Checkout",
+    "cart_total": "Cart Total",
+    "select_options": "Select Options",
+    "some_options_are_required": "Some options are required",
+    "we_only_have": "We only have",
+    "this_item_in_stock": "of this item in stock",
+    "make_sure_to_save_to_cart": "Make sure you Save To Cart before leaving page"
+
   }
 }

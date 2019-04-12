@@ -1,17 +1,35 @@
 $(function() {
-  $('table .quantity:first').focus();
-  $('[max]').change(function() {
-    var max = parseInt($(this).attr('max'), 10);
+
+  // Alerts customers of low inventory
+   $('.quantity-field').change(function() {
+    var max = parseInt($(this).attr('maximum'), 10);
     var value = parseInt($(this).val(), 10) || 0;
     if (value > max) {
-      alert('We only have ' + max + ' of this item in stock');
-      $(this).val(max);
+      $(this).parents('td').find('.order-form__tablecell--popuptext').show()
+    }
+  });
+
+  // Page order menu bar sticky
+  var barOffset = $('#StickNavWrapper').height();
+  var sticky = $('#StickyOrderFormBar').offset().top - barOffset;
+  $(window).on('scroll.stickynav', function() {
+    var scroll = $(window).scrollTop();
+    if (scroll >= sticky) {
+      $('#StickyOrderFormBar').addClass('order-form__stickybar');
+      $('#StickyOrderFormBar').css("top", barOffset);
+     } else {
+      $('#StickyOrderFormBar').removeClass('order-form__stickybar');
     }
   });
 
   // Change displayed collection
-  $('#select-collection').change(function(){
+  $('#select-collection').change(function() {
     document.location.href = '/pages/order-form/'+ $(this).val();
+  });
+
+  // Remind customer to save item to cart if leaving page
+  $('.pagination').mouseover(function() {
+    $('.save-to-cart').find('.order-form__tablecell--popuptext').show()
   });
 
   // Order form popup
@@ -22,11 +40,21 @@ $(function() {
     $('#order-form-modal').addClass('modal--is-active')
   });
 
-  $('.order-form-modal__close').click(function(event) {
-    event.preventDefault();
+  function closeModal() {
     saveRowProperties();
     printRowProperties();
     $('#order-form-modal').removeClass('modal--is-active');
+  };
+
+  $('.order-form-modal__close').click(function(event) {
+    event.preventDefault();
+    closeModal();
+  });
+
+  $(window).click(function(event) {
+    if ($(event.target).attr('id') == 'order-form-modal') {
+      closeModal();
+    }
   });
 
   function saveRowProperties() {
@@ -49,7 +77,7 @@ $(function() {
   function printRowProperties() {
     var line_prop_html = '';
     $.each(selectedRowCell.data(), function(key, value) {
-      line_prop_html += '<p>' + key + ": " + value + '</p>';
+      line_prop_html += "<p class='order-form__tablecell--line-properties'><strong>" + key + "</strong>: " + value + '</p>';
     })
     $(selectedRowCell).find('.selected-line-properties').html(line_prop_html);
   };
@@ -69,8 +97,10 @@ $(function() {
       var variantId = $(this).find('select').val() || $(this).find('data').val();
       var priceId = '#p-' + variantId + '-' + $(this).attr('row');
       var quantityId = '#q-' + variantId + '-' + $(this).attr('row');
+      var quantityErrorMessageId = '#qem-' + variantId + '-' + $(this).attr('row');
       $(priceId).show();
       $(quantityId).show();
+      $(quantityErrorMessageId).show();
     });
   });
 
@@ -78,10 +108,13 @@ $(function() {
   $('select').change(function(){
     var priceId = '#p-' + $(this).val() + '-' + $(this).parents('tr').attr('row');
     var quantityId = '#q-' + $(this).val() + '-' + $(this).parents('tr').attr('row');
- 	$(priceId).siblings().hide();
+    var quantityErrorMessageId = '#qem-' + $(this).val() + '-' + $(this).parents('tr').attr('row');
+ 	  $(priceId).siblings().hide();
     $(priceId).show();
     $(quantityId).siblings().hide();
     $(quantityId).show();
+    $(quantityErrorMessageId).siblings().hide();
+    $(quantityErrorMessageId).show();
   });
 
   // Add another row if selected variant has line item properties or options
@@ -93,53 +126,64 @@ $(function() {
   });
 
   // Running cart total
-  $('.quantity-field').change(function(){
-    var cartTotal = 0;
+  var initailCartTotal = parseFloat($('.cart-total').text().replace('$','').replace(',',''));
+  $('.quantity-field').change(function() {
+    var cartTotal = 0
     $('tr').each(function(){
       var price = parseFloat(getParameter('p', this).text().slice(2));
       var quantity = parseInt(getParameter('q', this).val());
       cartTotal += price*quantity;
     });
+    cartTotal += initailCartTotal
     $('.cart-total').html(cartTotal.toFixed(2));
   });
+
+  // ***** ORDER AND SAVE TO CART PROCESSING *****
+  // Source: https://help.shopify.com/en/themes/development/getting-started/using-ajax-api#youre-building-a-quick-order-form-beware
+  var cartQueue = [];
+
+  var moveAlong = function(goToCheckOut) {
+    if (cartQueue.length) {
+      var request = cartQueue.shift();
+      console.log(request);
+      addItem(request.variantId, request.quantity, request.properties, goToCheckOut);
+    }
+    else if (goToCheckOut) {
+      document.location.href = '/checkout';
+    }
+  };
+
+  var addItem = function(variantId, quantity, properties, goToCheckOut) {
+    jQuery.post( '/cart/add.js', { quantity: quantity, id: variantId, properties: properties}, null, "json")
+    .done(function(response) {
+      console.log('Post Done!', response);
+      moveAlong(goToCheckOut);
+    });
+  }
+
+  var requiredErrorMessage = function(el) {
+    el.find('.order-form__tablecell--popuptext').show()
+    $('.order-form__error-message').fadeIn()
+  }
 
   // Hide popup error message on moveover
   $('.order-form__tablecell--popuptext').hover(function() {
     $(this).fadeOut();
   });
 
-  // Add selected items to Cart
-  // Source: https://help.shopify.com/en/themes/development/getting-started/using-ajax-api#youre-building-a-quick-order-form-beware
-  var cartQueue = [];
+  $('#post-order').click(function(event){
+    event.preventDefault();
+    processOrders(true);
+  });
 
-  var moveAlong = function() {
-    if (cartQueue.length) {
-      var request = cartQueue.shift();
-      console.log(request);
-      addItem(request.variantId, request.quantity, request.properties);
-    }
-    else {
-      document.location.href = '/checkout';
-    }
-  };
+  $('#post-to-cart').click(function(event){
+    event.preventDefault();
+    processOrders(false);
+  });
 
-  var addItem = function(variantId, quantity, properties) {
-    jQuery.post( '/cart/add.js', { quantity: quantity, id: variantId, properties: properties}, null, "json")
-    .done(function(response) {
-      console.log('Post Done!', response);
-      moveAlong();
-    });
-  }
+  function processOrders (goToCheckOut) {
 
-  var radioButtonMessage = function(el) {
-  	console.log('oh no', el)
-    el.find('.order-form__tablecell--popuptext').show()
-    $('.order-form__error-message').fadeIn()
-  }
-
-  $('#post-order').submit(function(event) {
-    event.preventDefault()
-    var radioButtonChecked = true;
+    var requiredItemsSelected = true;
     var requiredLineProperties = []
     $.each(['0','1','2','3'], function(index, value) {
       var requiredLineProperty = $('table').attr('data-required-' + value)
@@ -147,18 +191,18 @@ $(function() {
         requiredLineProperties.push(requiredLineProperty)
       }
     });
+
     $('tr').each(function() {
       var currentRow = $(this);
       var quantity = parseInt(getParameter('q', currentRow).val());
       var properties = $(currentRow).find('.line-properties').data()
 
       if ( quantity > 0 ) {
-
         if (currentRow.find('.configure-options').length > 0) {
           $.each(requiredLineProperties, function(index, requiredLineProperty) {
             if (!properties[requiredLineProperty]) {
-              radioButtonMessage(currentRow);
-              radioButtonChecked = false;
+              requiredErrorMessage(currentRow);
+              requiredItemsSelected = false;
               return false
             }
           });
@@ -171,10 +215,12 @@ $(function() {
         });
       }
     });
-    if (radioButtonChecked) {
-      moveAlong();
+
+    if (requiredItemsSelected) {
+      moveAlong(goToCheckOut);
     } else {
       cartQueue = [];
     }
-  });
+  };
+
 });

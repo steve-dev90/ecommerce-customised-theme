@@ -29,18 +29,18 @@
                   {% assign property_size = item.properties | size %}
                   {% if property_size > 0 %}
                     {% for p in item.properties %}
-                  	  <div class='line-item__cart'>	
+                  	  <div class='line-item__cart'>
                       {% assign first_character_in_key = p.first | truncate: 1, '' %}
                       {% unless p.last == blank or first_character_in_key == '_' %}
-                        {{ p.first }}: 
+                        {{ p.first }}:
                         {% if p.last contains '/uploads/' %}
-                          <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a> 
+                          <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
                         {% else %}
                         <b>{{ p.last }} </b>
                         {% endif %}
 
                       {% endunless %}
-                     </div> 
+                     </div>
                     {% endfor %}
                   {% endif %}
 

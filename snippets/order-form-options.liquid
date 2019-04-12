@@ -1,0 +1,7 @@
+      {% if product.template_suffix == 'customizable' %}
+        <div class="selected-line-properties"></div>
+          <a class="configure-options">{{ 'order_form.select_options' | t }}</a>
+        <div>
+          <span class="order-form__tablecell--popuptext" style="display:none;">{{ 'order_form.some_options_are_required' | t }}</span>
+        </div>
+      {% endif %}
