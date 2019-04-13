@@ -36,7 +36,11 @@
                         {% if p.last contains '/uploads/' %}
                           <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
                         {% else %}
-                        <b>{{ p.last }} </b>
+                          {% if p.last contains '#' %}
+                            <span class="line-item__color--colors" style="background-color:{{ p.last }};">xxxxxxx</span>
+                          {% else %}
+                            <b>{{ p.last }} </b>
+                          {% endif %}
                         {% endif %}
 
                       {% endunless %}

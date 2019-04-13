@@ -9,7 +9,8 @@
 Based on source: https://gist.github.com/carolineschnapp/9122054
 {% endcomment %}
 
-{% paginate collection.products by 8 %}
+{% assign order_form_pagination = settings.order_form_pagination | plus: 0 %}
+{% paginate collection.products by order_form_pagination %}
 <div class="page-width">
   <form action="/cart" >
 

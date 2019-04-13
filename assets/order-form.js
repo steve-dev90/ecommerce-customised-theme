@@ -81,7 +81,12 @@ $(function() {
   function printRowProperties() {
     var line_prop_html = '';
     $.each(selectedRow.data(), function(key, value) {
-      line_prop_html += "<p class='order-form__tablecell--text'><strong>" + key + "</strong>: " + value + '</p>';
+      if (value.includes('#')) {
+        line_prop_html += "<p class='order-form__tablecell--text'><strong>" + key + "</strong>: " +
+          "<span style='background-color:" + value + "; color:transparent;'>xxxxx</span></p>";
+      } else {
+        line_prop_html += "<p class='order-form__tablecell--text'><strong>" + key + "</strong>: " + value + '</p>';
+      }
     })
     $(selectedRow).find('.selected-line-properties').html(line_prop_html);
   };

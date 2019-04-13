@@ -1679,7 +1679,7 @@
       {
         "type": "checkbox",
         "id": "custom_input_three_optionality",
-        "default": true,
+        "default": false,
         "label": {
           "de": "Required",
           "en": "Required",
@@ -2030,7 +2030,7 @@
       {
         "type": "checkbox",
         "id": "custom_input_four_optionality",
-        "default": true,
+        "default": false,
         "label": {
           "de": "Required",
           "en": "Required",
@@ -2269,6 +2269,36 @@
           "ja": "Fourth option color",
           "pt-BR": "Fourth option color"
         }
+      }
+    ]
+  },
+  {
+    "name": {
+      "de": "Order Form",
+      "en": "Order Form",
+      "es": "Order Form",
+      "fr": "Order Form",
+      "it": "Order Form",
+      "ja": "Order Form",
+      "pt-BR": "Order Form"
+    },
+    "settings": [
+      {
+        "type": "range",
+        "id": "order_form_pagination",
+        "min": 10,
+        "max": 50,
+        "step": 1,
+        "label": {
+          "de": "Order form products per page",
+          "en": "Order form products per page",
+          "es": "Order form products per page",
+          "fr": "Order form products per page",
+          "it": "Order form products per page",
+          "ja": "Order form products per page",
+          "pt-BR": "Order form products per page"
+        },
+        "default": 20
       }
     ]
   }

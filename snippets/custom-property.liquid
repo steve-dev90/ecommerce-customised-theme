@@ -49,13 +49,11 @@
           {% when "drop_down" %}
             <option value={{ settings[input_option] }}>{{ settings[input_option] }}</option>
           {% when "color_radio_button" %}
-            <div style="display:inline;">
               <input {% if settings[custom_input_optionality] %} required class="required" {% endif %}
                 type="radio"
                 name="properties[{{ settings[custom_input_label] }}]"
                 value={{ settings[input_option] }} >
-              <div style="width:30px;height:10px;background-color:{{ settings[input_option] }};float:right"></div>
-            </div><br>
+              <span class="line-item__color--colors" style="background-color:{{ settings[input_option] }};">xxxxxxx</span><br>
         {% endcase %}
       {% endunless %}
     {% endfor %}
