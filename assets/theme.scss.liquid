@@ -6487,6 +6487,7 @@ body {
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
+  right: 50%;
   z-index: 1;
   margin-left: -80px;
 
@@ -6499,6 +6500,15 @@ body {
   border-width: 5px;
   border-style: solid;
   border-color: transparent transparent #555 transparent;
+  }
+}
+
+.order-form__tablecell--inventorytext {
+  @extend .order-form__tablecell--popuptext;
+  left: 80%;
+
+  @include media-query($medium-down) {
+    left: 50%;
   }
 }
 

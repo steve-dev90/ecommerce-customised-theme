@@ -1,15 +1,19 @@
 $(function() {
 
-  // Alerts customers of low inventory
+  // *** LOW INVENTORY ALERT ***
    $('.quantity-field').change(function() {
     var max = parseInt($(this).find('input').attr('maximum'), 10);
     var value = parseInt($(this).find('input').val(), 10) || 0;
     if (value > max) {
-      $(this).parents('td').find('.order-form__tablecell--popuptext').show()
+      $(this).parents('td').find('.order-form__tablecell--inventorytext').show()
     }
   });
 
-  // Page order menu bar sticky
+  $('.order-form__tablecell--inventorytext').hover(function() {
+    $(this).fadeOut();
+  });
+
+  // *** ORDER FORM MENU BAR STICKY
   var barOffset = $('#StickNavWrapper').height();
   var sticky = $('#StickyOrderFormBar').offset().top - barOffset;
   $(window).on('scroll.stickynav', function() {
@@ -22,17 +26,17 @@ $(function() {
     }
   });
 
-  // Change displayed collection
+  // *** COLLECTION SELECT ***
   $('#select-collection').change(function() {
     document.location.href = '/pages/order-form/'+ $(this).val();
   });
 
-  // Remind customer to save item to cart if leaving page
+  // *** REMINDER TO SAVE TO CART IF NAVIGATING AWAY FROM PAGE ***
   $('.pagination').mouseover(function() {
     $('.save-to-cart').find('.order-form__tablecell--popuptext').show()
   });
 
-  // Order form popup
+  // *** ORDER FORM LINE ITEM SELECT MODAL ***
   var selectedRow
   $('.configure-options').click(function(event) {
     event.preventDefault()
@@ -82,7 +86,7 @@ $(function() {
     $(selectedRow).find('.selected-line-properties').html(line_prop_html);
   };
 
-  //Initial form setup
+  // *** PRODUCT VARIANT SELECT ***
   var variantParameterIds = ['p', 'pm', 'q', 'qm'];
 
   $( document ).ready(function() {
@@ -118,8 +122,9 @@ $(function() {
   	}
   });
 
-  // Running cart total
-  var getParameter = function(parameter, selector) {
+  // *** RUNNING CART TOTAL ***
+  // Get parameter used in order processing as well
+  function getParameter (parameter, selector) {
     if (parameter.includes('m')) {
       selectId = '#select-'+ $(selector).attr('row') + '-' + $(selector).attr('product') + 'm'
     } else {
@@ -128,7 +133,11 @@ $(function() {
     var variantId = $(selectId).val() || $(selector).find('data').val();
     var parameterId = '#'+ parameter + '-' + variantId + '-' + $(selector).attr('row');
 
-    return $(parameterId);
+    if (parameter == "" ) {
+      return variantId
+    } else {
+      return $(parameterId);
+    }
   };
 
   var initailCartTotal = parseFloat($('.cart-total').text().replace('$','').replace(',',''));
@@ -151,7 +160,7 @@ $(function() {
   // Source: https://help.shopify.com/en/themes/development/getting-started/using-ajax-api#youre-building-a-quick-order-form-beware
   var cartQueue = [];
 
-  var moveAlong = function(goToCheckOut) {
+  function moveAlong (goToCheckOut) {
     if (cartQueue.length) {
       var request = cartQueue.shift();
       console.log(request);
@@ -162,7 +171,7 @@ $(function() {
     }
   };
 
-  var addItem = function(variantId, quantity, properties, goToCheckOut) {
+  function addItem (variantId, quantity, properties, goToCheckOut) {
     jQuery.post( '/cart/add.js', { quantity: quantity, id: variantId, properties: properties}, null, "json")
     .done(function(response) {
       console.log('Post Done!', response);
@@ -170,7 +179,7 @@ $(function() {
     });
   }
 
-  var requiredErrorMessage = function(el) {
+  function requiredErrorMessage (el) {
     el.find('.order-form__tablecell--popuptext').show()
     $('.order-form__error-message').fadeIn()
   }
@@ -206,7 +215,7 @@ $(function() {
       var quantity = parseInt(getParameter('q', currentRow).find('input').val()) ||
         parseInt(getParameter('qm', currentRow).find('input').val());
       var properties = $(currentRow).data()
-      console.log(properties)
+
       if ( quantity > 0 ) {
         if (currentRow.find('.configure-options').length > 0) {
           $.each(requiredLineProperties, function(index, requiredLineProperty) {
@@ -219,7 +228,7 @@ $(function() {
         }
 
         cartQueue.push({
-          variantId: currentRow.find('select').val() || currentRow.find('data').val(),
+          variantId: getParameter('', currentRow) || currentRow.find('data').val(),
           quantity: quantity,
           properties: properties
         });
