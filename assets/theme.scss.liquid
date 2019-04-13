@@ -6329,10 +6329,6 @@ body {
   align-content: flex-start;
 }
 
-line-item__selector--required-indicator {
-  font-size: 1rem;
-}
-
 .line-item__border {
   width: 100%;
 }
@@ -6356,7 +6352,13 @@ line-item__selector--required-indicator {
   display: none;
   text-transform: uppercase;
   color: red;
-  margin-left: 20px;
+}
+
+.order-form__error-message--container {
+  display: inline;
+  @include media-query($medium-down) {
+    display: block;
+  }
 }
 
 .order-form__table {
@@ -6374,6 +6376,11 @@ line-item__selector--required-indicator {
 .order-form__menubar input {
   margin-bottom: 10px;
   margin-right: 10px;
+
+  @include media-query($medium-down) {
+    margin-bottom: 10px;
+    margin-right: 0px;
+  }
 }
 
 .order-form__menubar--sticky {
@@ -6384,7 +6391,7 @@ line-item__selector--required-indicator {
   z-index: $z-index-stickynav;
 
   @include media-query($medium-down) {
-    max-width: $width-site
+    margin-left: -($gutter-site / 2);
   }
 
 }
@@ -6399,7 +6406,7 @@ line-item__selector--required-indicator {
   }
 }
 
-.order-form__tablecell--line-properties {
+.order-form__tablecell--text {
   margin-bottom: 0;
 }
 
@@ -6442,21 +6449,33 @@ line-item__selector--required-indicator {
   text-align: center;
 }
 
-.order-form__tablecell--quantity {
-  max-width: 80%;
-  text-align:center;
-}
-
 .order-form__tablecell--title {
   width: 15rem;
 }
 
-.order-form__tablecell--price-discount {
-  text-decoration: line-through;
+.order-form__tablecell--variantoptions label {
+  display: block;
 }
 
-.quantity-field {
+.order-form__tablecell--variantoptions select {
+  margin-bottom: 10px;
+}
+
+.order-form__tablecell--quantity {
   text-align:center;
+}
+
+.order-form__tablecell--quantity input {
+  max-width: 80%;
+  text-align:center;
+}
+
+.order-form__tablecell--quantity label {
+  display: block;
+}
+
+.order-form__tablecell--price-discount {
+  text-decoration: line-through;
 }
 
 /* Source: https://www.w3schools.com/howto/howto_js_popup.asp */
@@ -6488,9 +6507,13 @@ line-item__selector--required-indicator {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
   z-index: 100;
   position: relative;
+
+  @include media-query($medium-down) {
+    width: 80%;
+  }
 }
 
 .order-form-modal__close {

@@ -1,8 +1,8 @@
 {% if product.available %}
   {% assign first_variant = product.first_available_variant %}
-  <tr row="{{row_id}}" style="display:none;">
+  <tr row="{{row_id}}" product="{{ product.id }}" style="display:none;">
 
-    <td class="order-form__tablecell--mobile">
+    <td class=" order-form__tablecell--mobile">
       <div class="order-form__tablecell-toprow-container--mobile">
         <div class="order-form__tablecell-toprow--mobile">
           {% include 'order-form-image' %}
@@ -21,7 +21,7 @@
           {% include 'order-form-options' %}
         </div>
         <div>
-          {% include 'order-form-variant' %}
+          {% include 'order-form-variant', mobile: 'm' %}
         </div>
         <div>
           {% include 'order-form-quantity', mobile: 'm' %}
@@ -38,13 +38,13 @@
     <td class="line-properties order-form__tablecell--not-mobile">
       {% include 'order-form-options' %}
     </td>
-    <td class="order-form__tablecell--center order-form__tablecell--not-mobile">
-      {% include 'order-form-variant' %}
+    <td class="order-form__tablecell--not-mobile">
+      {% include 'order-form-variant', mobile: '' %}
     </td>
     <td class="order-form__tablecell--center order-form__tablecell--not-mobile">
       {% include 'order-form-price', mobile: '' %}
     </td>
-    <td class="order-form__tablecell--center order-form__tablecell--quantity order-form__tablecell--not-mobile">
+    <td class="order-form__tablecell--not-mobile">
       {% include 'order-form-quantity', mobile: '' %}
     </td>
 

@@ -4,7 +4,7 @@
 {% assign custom_input_optionality = custom_input | append: "_optionality" %}
 
 {% if settings[custom_input_display] %}
-  <div class="line-item__selector">
+  <div class="line-item__selector" >
 
     {% if settings[custom_input_type] == "checkbox" %}
       <input type="hidden" name="properties[{{ settings.custom_input_one_label }}]" value="No">

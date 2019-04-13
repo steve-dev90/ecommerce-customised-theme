@@ -2,8 +2,8 @@ $(function() {
 
   // Alerts customers of low inventory
    $('.quantity-field').change(function() {
-    var max = parseInt($(this).attr('maximum'), 10);
-    var value = parseInt($(this).val(), 10) || 0;
+    var max = parseInt($(this).find('input').attr('maximum'), 10);
+    var value = parseInt($(this).find('input').val(), 10) || 0;
     if (value > max) {
       $(this).parents('td').find('.order-form__tablecell--popuptext').show()
     }
@@ -33,10 +33,10 @@ $(function() {
   });
 
   // Order form popup
-  var selectedRowCell
+  var selectedRow
   $('.configure-options').click(function(event) {
     event.preventDefault()
-    selectedRowCell = $(this).parents('td')
+    selectedRow = $(this).parents('tr')
     $('#order-form-modal').addClass('modal--is-active')
   });
 
@@ -66,20 +66,20 @@ $(function() {
       if ($(this).find('select').length > 0) {
         line_prop_value = $(this).find('select').val();
       }
-      if ($(this).find('#custom').length > 0 && !line_prop_value) {
+      if ($(this).find("input[type='checkbox']").length > 0 && !line_prop_value) {
         line_prop_value = 'No';
       }
-      selectedRowCell.data(line_prop_name, line_prop_value);
+      selectedRow.data(line_prop_name, line_prop_value);
     })
-    console.log(selectedRowCell.data());
+    console.log(selectedRow.data());
   };
 
   function printRowProperties() {
     var line_prop_html = '';
-    $.each(selectedRowCell.data(), function(key, value) {
-      line_prop_html += "<p class='order-form__tablecell--line-properties'><strong>" + key + "</strong>: " + value + '</p>';
+    $.each(selectedRow.data(), function(key, value) {
+      line_prop_html += "<p class='order-form__tablecell--text'><strong>" + key + "</strong>: " + value + '</p>';
     })
-    $(selectedRowCell).find('.selected-line-properties').html(line_prop_html);
+    $(selectedRow).find('.selected-line-properties').html(line_prop_html);
   };
 
   //Initial form setup
@@ -120,20 +120,27 @@ $(function() {
 
   // Running cart total
   var getParameter = function(parameter, selector) {
-    var variantId = $(selector).find('select').val() || $(selector).find('data').val();
-    // console.log(variantId)
+    if (parameter.includes('m')) {
+      selectId = '#select-'+ $(selector).attr('row') + '-' + $(selector).attr('product') + 'm'
+    } else {
+      selectId = '#select-'+ $(selector).attr('row') + '-' + $(selector).attr('product')
+    }
+    var variantId = $(selectId).val() || $(selector).find('data').val();
     var parameterId = '#'+ parameter + '-' + variantId + '-' + $(selector).attr('row');
-    return $(selector).find(parameterId);
+
+    return $(parameterId);
   };
+
   var initailCartTotal = parseFloat($('.cart-total').text().replace('$','').replace(',',''));
 
-  $('.quantity-field').change(function() {
+  $('input').change(function() {
     var cartTotal = 0
     $('tr').each(function() {
       var price = parseFloat(getParameter('p', this).text().slice(2)) ||
         parseFloat(getParameter('pm', this).text().slice(2));
-      var quantity = parseInt(getParameter('q', this).val()) ||
-        parseInt(getParameter('qm', this).val());
+      var quantity = parseInt(getParameter('q', this).find('input').val()) ||
+        parseInt(getParameter('qm', this).find('input').val());
+
       cartTotal += price*quantity;
     });
     cartTotal += initailCartTotal
@@ -196,9 +203,10 @@ $(function() {
 
     $('tr').each(function() {
       var currentRow = $(this);
-      var quantity = parseInt(getParameter('q', currentRow).val());
-      var properties = $(currentRow).find('.line-properties').data()
-
+      var quantity = parseInt(getParameter('q', currentRow).find('input').val()) ||
+        parseInt(getParameter('qm', currentRow).find('input').val());
+      var properties = $(currentRow).data()
+      console.log(properties)
       if ( quantity > 0 ) {
         if (currentRow.find('.configure-options').length > 0) {
           $.each(requiredLineProperties, function(index, requiredLineProperty) {

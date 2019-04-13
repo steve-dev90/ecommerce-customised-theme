@@ -1,9 +1,21 @@
-{% if product.variants.size > 1 %}
-  <select name="id" >
-    {% for variant in product.variants %}
-      <option value="{{variant.id}}">{{ variant.title }}</option>
-    {% endfor %}
-  </select>
+{% unless product.has_only_default_variant %}
+  <div class="order-form__tablecell--variantoptions">
+    <label {% if option.name == 'default' %} class="label--hidden" {% else %} class="order-form__tablecell--variantlabel" {% endif %} >
+      {% for option in product.options_with_values %}
+        {% if forloop.first == true %}
+          {{ option.name }}
+        {% else %}
+          - {{ option.name }}
+        {% endif %}
+      {% endfor %}
+    </label>
+    <select name="id" id="select-{{ row_id }}-{{ product.id}}{{ mobile }}">
+      {% for variant in product.variants %}
+        <option value="{{variant.id}}">{{ variant.title }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
 {% else %}
   <data value="{{first_variant.id}}"></data>
-{% endif %}
+{% endunless %}

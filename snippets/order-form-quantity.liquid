@@ -1,6 +1,7 @@
 {% for variant in product.variants %}
-  <input onfocus="this.select()" id="q{{ mobile }}-{{ variant.id }}-{{row_id}}" class="quantity-field" min="0" {% unless variant.inventory_management == blank or variant.inventory_policy == 'continue' %} maximum="{{ variant.inventory_quantity }}" {% endunless %} type="number" value="0" />
-  <div class="quantity-field" id="qem{{ mobile }}-{{ variant.id }}-{{row_id}}">
-    <span class="order-form__tablecell--popuptext" style="display:none;">{{ 'order_form.we_only_have' | t }} {{ variant.inventory_quantity }} {{ 'order_form.this_item_in_stock' | t }}</span>
-  </div>
+    <div id="q{{ mobile }}-{{ variant.id }}-{{row_id}}" class="quantity-field order-form__tablecell--quantity" >
+      <label>Quantity</label>
+      <input onfocus="this.select()"  min="0" {% unless variant.inventory_management == blank or variant.inventory_policy == 'continue' %} maximum="{{ variant.inventory_quantity }}" {% endunless %} type="number" value="0" />
+      <span class="order-form__tablecell--popuptext" style="display:none;">{{ 'order_form.we_only_have' | t }} {{ variant.inventory_quantity }} {{ 'order_form.this_item_in_stock' | t }}</span>
+    </div>
 {% endfor %}
