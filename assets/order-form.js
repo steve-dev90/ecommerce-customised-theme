@@ -95,6 +95,10 @@ $(function() {
   var variantParameterIds = ['p', 'pm', 'q', 'qm'];
 
   $( document ).ready(function() {
+    url = $(location).attr("href").split("/").slice(-1)[0].split("?")[0]
+    selector = "#select-collection option[value=" + url +"]"
+    $(selector).attr('selected', 'selected');
+
     $("tr[row='1']").show();
     $('.price').hide();
     $('.quantity-field').hide();
@@ -165,22 +169,22 @@ $(function() {
   // Source: https://help.shopify.com/en/themes/development/getting-started/using-ajax-api#youre-building-a-quick-order-form-beware
   var cartQueue = [];
 
-  function moveAlong (goToCheckOut) {
+  function moveAlong (pageDivert) {
     if (cartQueue.length) {
       var request = cartQueue.shift();
       console.log(request);
-      addItem(request.variantId, request.quantity, request.properties, goToCheckOut);
+      addItem(request.variantId, request.quantity, request.properties, pageDivert);
     }
-    else if (goToCheckOut) {
-      document.location.href = '/checkout';
+    else {
+      document.location.href = pageDivert;
     }
   };
 
-  function addItem (variantId, quantity, properties, goToCheckOut) {
+  function addItem (variantId, quantity, properties, pageDivert) {
     jQuery.post( '/cart/add.js', { quantity: quantity, id: variantId, properties: properties}, null, "json")
     .done(function(response) {
       console.log('Post Done!', response);
-      moveAlong(goToCheckOut);
+      moveAlong(pageDivert);
     });
   }
 
@@ -196,15 +200,15 @@ $(function() {
 
   $('#post-order').click(function(event){
     event.preventDefault();
-    processOrders(true);
+    processOrders('/checkout');
   });
 
   $('#post-to-cart').click(function(event){
     event.preventDefault();
-    processOrders(false);
+    processOrders('/cart');
   });
 
-  function processOrders (goToCheckOut) {
+  function processOrders (pageDivert) {
 
     var requiredItemsSelected = true;
     var requiredLineProperties = []
@@ -241,7 +245,7 @@ $(function() {
     });
 
     if (requiredItemsSelected) {
-      moveAlong(goToCheckOut);
+      moveAlong(pageDivert);
     } else {
       cartQueue = [];
     }
